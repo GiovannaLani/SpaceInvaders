@@ -1,7 +1,7 @@
 package gui.statistics;
 
 public enum TableTitle {
-	PUNTUACION, FECHA, TIEMPO, NIVEL;
+PUNTUACION, FECHA, TIEMPO, NIVEL;
 
 	@Override
 	public String toString() {

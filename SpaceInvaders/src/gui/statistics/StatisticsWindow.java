@@ -20,7 +20,7 @@ public class StatisticsWindow extends JFrame {
 		setLocationRelativeTo(null);
 
 		JTabbedPane jTabbedPane = new JTabbedPane();
-		jTabbedPane.addTab("TOP 10", null);
+		jTabbedPane.addTab("TOP 10", new Top10Panel());
 		jTabbedPane.addTab("Jugador", new PlayerPanel());
 		jTabbedPane.addTab("País", null);
 		add(jTabbedPane);
