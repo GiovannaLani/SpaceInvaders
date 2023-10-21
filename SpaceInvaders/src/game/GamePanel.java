@@ -62,7 +62,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		g2.setStroke(new BasicStroke(3));
 		g2.drawLine(0, 640, 640, 640);
 		g2.setFont(font(30));
-		//g2.drawString(world.getPlayer().getLives()+ "", 10, 690);
+		g2.drawString(world.getPlayer().getLives()+ "", 10, 690);
 		int[] coordLifes= {50,100,150};
 		for (int i=0;i<world.getPlayer().getLives();i++) {
 			try {
