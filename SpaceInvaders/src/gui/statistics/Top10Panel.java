@@ -30,6 +30,7 @@ public class Top10Panel extends JPanel {
 		Player p8 = new Player("Nombre8", "x", "Pais1");
 		Player p9 = new Player("Nombre9", "x", "Pais4");
 		Player p10 = new Player("Nombre10", "x", "Pais5");
+		Player p11 = new Player("Nombre11", "x", "Pais5");
 
 		Player[] names = { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 };
 		ArrayList<Game> data = new ArrayList<>();
@@ -43,6 +44,7 @@ public class Top10Panel extends JPanel {
 		data.add(new Game(p8, 1050, 1000000, LocalDate.of(2023, 11, 8), 1));
 		data.add(new Game(p9, 3250, 2000000, LocalDate.of(2023, 11, 9), 2));
 		data.add(new Game(p10, 5900, 3000000, LocalDate.of(2023, 11, 8), 3));
+		data.add(new Game(p11, 8900, 3000000, LocalDate.of(2023, 11, 8), 3));
 		ArrayList<Game> playersData = new ArrayList<>();
 
 		/////////
