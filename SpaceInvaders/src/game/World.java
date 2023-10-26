@@ -25,12 +25,12 @@ public class World {
 	private PlayerShip player;
 
 	public World(GamePanel p) {
-		this.p=p;
+		this.p = p;
 		lGameObject = new ArrayList<>();
 		lAlien = new ArrayList<>();
-		alienShoot=null;
+		alienShoot = null;
 		playerShoot = null;
-		player=new PlayerShip(320, 590, 8*4, 13*4, p);
+		player = new PlayerShip(320, 590, 8 * 4, 13 * 4, p);
 		lGameObject.add(player);
 		for (int i = 0; i < 11; i++) {
 			lAlien.add(new AlienSquid(p.getWidth() + 20 + i * 50 - ALIEN_SQUID_WIDTH / 2, ALIEN_ROW[0], ALIEN_HEIGHT,
@@ -47,8 +47,6 @@ public class World {
 		lGameObject.addAll(lAlien);
 	}
 
-
-
 	public PlayerShip getPlayer() {
 		return player;
 	}
@@ -57,16 +55,16 @@ public class World {
 		this.player = player;
 	}
 
-	private void updateLives (long milis) {
-		if (alienShoot!=null && alienShoot.collidesWith(player) && !alienShoot.hasCollided) {
-			alienShoot.setLives(alienShoot.getLives()-1);
-			player.setLives(player.getLives()-1);
-			alienShoot.hasCollided =true;
+	private void updateLives(long milis) {
+		if (alienShoot != null && alienShoot.collidesWith(player) && !alienShoot.hasCollided) {
+			alienShoot.setLives(alienShoot.getLives() - 1);
+			player.setLives(player.getLives() - 1);
+			alienShoot.hasCollided = true;
 		}
-		for(Alien alien: lAlien) {
-			if (playerShoot!=null && playerShoot.collidesWith(alien) && !playerShoot.hasCollided) {
-				playerShoot.setLives(playerShoot.getLives()-1);
-				alien.setLives(alien.getLives()-1);
+		for (Alien alien : lAlien) {
+			if (playerShoot != null && playerShoot.collidesWith(alien) && !playerShoot.hasCollided) {
+				playerShoot.setLives(playerShoot.getLives() - 1);
+				alien.setLives(alien.getLives() - 1);
 				playerShoot.hasCollided = true;
 				playerShoot = null;
 			}
@@ -78,29 +76,28 @@ public class World {
 		updateLives(milis);
 		for (GameObject go : lGameObject) {
 			go.update(milis);
-			if(go.isDead()) {
+			if (go.isDead() && !(go instanceof PlayerShip)) {
 				deadObjects.add(go);
-				if(go instanceof Alien) {
+				if (go instanceof Alien) {
 					lAlien.remove(go);
 				}
 			}
 		}
 		changeAlienDirection();
 		shootAlien();
-		if(alienShoot.collidesDownBorder()) {
-			alienShoot=null;
+		if (alienShoot.collidesDownBorder()) {
+			alienShoot = null;
 			lGameObject.remove(alienShoot);
 		}
-		if(playerShoot!=null) {
-			if(playerShoot.collidesTopBorder()) {
-				playerShoot=null;
+		if (playerShoot != null) {
+			if (playerShoot.collidesTopBorder()) {
+				playerShoot = null;
 				lGameObject.remove(playerShoot);
 			}
 		}
 		lGameObject.removeAll(deadObjects);
 
 	}
-	
 
 	public void changeAlienDirection() {
 		Alien.setChangeDirection(false);
@@ -123,23 +120,25 @@ public class World {
 
 	public void draw(Graphics2D g2) {
 		for (GameObject go : lGameObject) {
-			//if(!go.isDead() || go instanceof PlayerShip) {
-				go.draw(g2);
-			//}
+			// if(!go.isDead() || go instanceof PlayerShip) {
+			go.draw(g2);
+			// }
 		}
 	}
 
 	public void shootAlien() {
-		if (alienShoot==null) {
-			Alien alien= lAlien.get(random.nextInt(lAlien.size()));
-			alienShoot= new AlienShoot(alien.getX()+alien.getWidth()/2, alien.getY()+alien.getHeight(), 7*3, 3*3, p);
+		if (alienShoot == null || alienShoot.isDead()) {
+			Alien alien = lAlien.get(random.nextInt(lAlien.size()));
+			alienShoot = new AlienShoot(alien.getX() + alien.getWidth() / 2, alien.getY() + alien.getHeight(), 7 * 3,
+					3 * 3, p);
 			lGameObject.add(alienShoot);
 		}
 	}
 
 	public void shootPlayer() {
-		if (playerShoot==null) {
-			playerShoot = new PlayerShoot(player.getX() + player.getWidth()/2 - (2*3)/2, player.getY() , 6*3, 1*3, p);
+		if (playerShoot == null) {
+			playerShoot = new PlayerShoot(player.getX() + player.getWidth() / 2 - (2 * 3) / 2, player.getY(), 6 * 3,
+					1 * 3, p);
 			lGameObject.add(playerShoot);
 		}
 	}
