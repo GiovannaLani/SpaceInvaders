@@ -22,7 +22,7 @@ public class StatisticsWindow extends JFrame {
 		JTabbedPane jTabbedPane = new JTabbedPane();
 		jTabbedPane.addTab("TOP 10", new Top10Panel());
 		jTabbedPane.addTab("Jugador", new PlayerPanel());
-		jTabbedPane.addTab("País", null);
+		jTabbedPane.addTab("País", new TopCountryPanel());
 		add(jTabbedPane);
 
 		setVisible(true);
