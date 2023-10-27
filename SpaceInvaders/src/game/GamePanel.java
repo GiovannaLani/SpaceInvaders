@@ -12,22 +12,38 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+
+import game.PausePanel;
+import game.World;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Thread gameThread;
 	private long millis = 40;
 	private World world;
+	private boolean gamePaused;
+	private PausePanel pausePanel;
+	public JLayeredPane layeredPane;
 
 	public GamePanel() {
 		setBackground(Color.black);
 		setPreferredSize(new Dimension(640, 700));
 		setFocusable(true);
 		addKeyListener(this);
-		world = new World(this);
+		layeredPane = new JLayeredPane();
+		layeredPane.setPreferredSize(new Dimension(640,700));
+		world= new World(this);
+		gamePaused = false;
+		pausePanel = new PausePanel(this);
+		pausePanel.setBounds(160,175,(int)pausePanel.getPreferredSize().getWidth(),(int)pausePanel.getPreferredSize().getHeight());
+		pausePanel.setVisible(false);
+		layeredPane.add(this,JLayeredPane.DEFAULT_LAYER);
+		layeredPane.add(pausePanel,JLayeredPane.POPUP_LAYER);
+		this.setBounds(0,0,640,700);
 	}
 
 	public void startGameThread() {
@@ -40,20 +56,29 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		long timeInc = System.currentTimeMillis();
 		long timeEnd = System.currentTimeMillis();
 		long millisEnd;
-		while (!world.getPlayer().isDead()) {
-			timeInc = System.currentTimeMillis();
-			update();
-			repaint();
-			timeEnd = System.currentTimeMillis();
-			millisEnd = millis - (timeEnd - timeInc);
-			try {
-				Thread.sleep(millisEnd);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		while (!world.getPlayer().isDead() && gameThread != null) {
+			if(!(gamePaused)) {
+				timeInc= System.currentTimeMillis();
+				update();
+				repaint();
+				timeEnd=System.currentTimeMillis();
+				millisEnd=millis-(timeEnd-timeInc);
+				try {
+					Thread.sleep(millisEnd);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}else {
+				synchronized (gameThread) {
+					try {
+						gameThread.wait();
+					} catch (InterruptedException e) {
+						System.out.println("Thread Interrupted");
+					}
+				}
 			}
 		}
 	}
-
 	public void update() {
 		world.update(millis);
 	}
@@ -75,6 +100,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 				e.printStackTrace();
 			}
 		}
+		g2.setColor(Color.WHITE);
+		g2.drawString("SCORE", 10, 50);
+		g2.drawString(world.getPlayer().getPoints() + "",70,90);
 		world.draw(g2);
 	}
 
@@ -90,6 +118,17 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			world.shootPlayer();
+		}
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			gamePaused = !gamePaused;
+			if(!(gamePaused)) {
+				synchronized (gameThread) {
+					gameThread.notify();
+				}
+				pausePanel.setVisible(false);
+			}else {
+				pausePanel.setVisible(true);
+			}
 		}
 
 	}
@@ -120,4 +159,41 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		}
 		return font;
 	}
+	public World getWorld() {
+		return world;
+	}
+
+	public void setWorld(World world) {
+		this.world = world;
+	}
+
+	public boolean isGamePaused() {
+		return gamePaused;
+	}
+
+	public void setGamePaused(boolean gamePaused) {
+		this.gamePaused = gamePaused;
+	}
+
+
+	public Thread getGameThread() {
+		return gameThread;
+	}
+
+	public void setGameThread(Thread gameThread) {
+		this.gameThread = gameThread;
+	}
+
+	public void restartGame() {
+		if(gameThread!=null) {
+			gameThread.interrupt();
+			gameThread = null;
+		}
+		pausePanel.setVisible(false);
+		this.requestFocus();
+		world = new World(this);
+		gamePaused = false;
+		startGameThread();
+	}
+
 }

@@ -9,6 +9,7 @@ public abstract class Shoot extends GameObject{
 	
 	public Shoot(double x, double y, int height, int width, GamePanel p) {
 		super(x, y, height, width, p);
+		lives = 1;
 	}
 
 

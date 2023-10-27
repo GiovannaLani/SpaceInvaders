@@ -9,7 +9,8 @@ import javax.imageio.ImageIO;
 public class PlayerShip extends GameObject {
 	public static boolean movingRight;
 	public static boolean movingLeft;
-
+	
+	private int points;
 	private BufferedImage imgPlayer, imgPlayerKill;
 	private int speed_x = 150;
 
@@ -56,5 +57,13 @@ public class PlayerShip extends GameObject {
 			movingLeft = false;
 		}
 		return false;
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
 	}
 }
