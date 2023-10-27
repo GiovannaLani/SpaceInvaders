@@ -12,7 +12,7 @@ public class AlienCrab extends Alien {
 			alienImg1 = ImageIO.read(getClass().getResourceAsStream("/images/crab1.png"));
 			alienImg2 = ImageIO.read(getClass().getResourceAsStream("/images/crab2.png"));
 			killImg = ImageIO.read(getClass().getResourceAsStream("/images/alien_kill.png"));
-
+			setPoints(20);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

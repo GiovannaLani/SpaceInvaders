@@ -8,7 +8,9 @@ public abstract class Alien extends GameObject {
 	protected static float speed;
 	protected static int direction = 1;
 	protected static boolean changeDirection;
-	protected static long timeMaxDying = 500;
+	protected static long timeMaxDying = 200;
+	protected int points;
+	
 
 	protected BufferedImage alienImg1, alienImg2, killImg;
 	protected int spriteCounter = 0;
@@ -19,6 +21,14 @@ public abstract class Alien extends GameObject {
 		super(x, y, height, width, p);
 		lives = 1;
 		speed = 40;
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 	public static float getSpeed() {

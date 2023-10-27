@@ -12,6 +12,7 @@ public class AlienOctopus extends Alien {
 			alienImg1 = ImageIO.read(getClass().getResourceAsStream("/images/octopus1.png"));
 			alienImg2 = ImageIO.read(getClass().getResourceAsStream("/images/octopus2.png"));
 			killImg = ImageIO.read(getClass().getResourceAsStream("/images/alien_kill.png"));
+			setPoints(10);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
