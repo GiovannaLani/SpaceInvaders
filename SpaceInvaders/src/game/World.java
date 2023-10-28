@@ -1,11 +1,12 @@
 package game;
 
 import java.awt.Graphics2D;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import game.Alien;
 
 public class World {
 	private static final int[] ALIEN_ROW = { 100, 130, 160, 190, 220 };
@@ -20,13 +21,14 @@ public class World {
 	private List<GameObject> lGameObject;
 	private List<Alien> lAlien;
 	private float alienSpeed = 40;
-	private float alienAcceleration = 2;
+	private float maxSpeed = 50;
 
 	private PlayerShoot playerShoot;
 	private AlienShoot alienShoot;
 	private PlayerShip player;
 
-	public World(GamePanel p) {
+	public World(GamePanel p, boolean personalizado) {
+		super();
 		this.p = p;
 		lGameObject = new ArrayList<>();
 		lAlien = new ArrayList<>();
@@ -34,17 +36,41 @@ public class World {
 		playerShoot = null;
 		player = new PlayerShip(320, 590, 8 * 4, 13 * 4, p);
 		lGameObject.add(player);
-		for (int i = 0; i < 11; i++) {
-			lAlien.add(new AlienSquid(20 + i * 50 - ALIEN_SQUID_WIDTH / 2, ALIEN_ROW[0], ALIEN_HEIGHT,
-					ALIEN_SQUID_WIDTH, p));
-			lAlien.add(new AlienCrab(20 + i * 50 - ALIEN_CRAB_WIDTH / 2, ALIEN_ROW[1], ALIEN_HEIGHT,
-					ALIEN_CRAB_WIDTH, p));
-			lAlien.add(new AlienCrab(20 + i * 50 - ALIEN_CRAB_WIDTH / 2, ALIEN_ROW[2], ALIEN_HEIGHT,
-					ALIEN_CRAB_WIDTH, p));
-			lAlien.add(new AlienOctopus(20 + i * 50 - ALIEN_OCTOPUS_WIDTH / 2, ALIEN_ROW[3],
-					ALIEN_HEIGHT, ALIEN_OCTOPUS_WIDTH, p));
-			lAlien.add(new AlienOctopus(20 + i * 50 - ALIEN_OCTOPUS_WIDTH / 2, ALIEN_ROW[4],
-					ALIEN_HEIGHT, ALIEN_OCTOPUS_WIDTH, p));
+		String[][] lEnemies = loadLevel("res/data/level.dat");
+		if (personalizado && lEnemies != null) {
+			for (int i = 0; i < lEnemies.length; i++) {
+				for (int j = 0; j < lEnemies[0].length; j++) {
+					String alienType = lEnemies[i][j];
+					if (alienType != null) {
+						if (alienType.equals(AlienCrab.class.getSimpleName())) {
+							lAlien.add(new AlienCrab( 20 + j * 50 - ALIEN_CRAB_WIDTH / 2, 100 + 30 * i,
+									ALIEN_HEIGHT, ALIEN_CRAB_WIDTH, p));
+						} else if (alienType.equals(AlienOctopus.class.getSimpleName())) {
+							lAlien.add(new AlienOctopus( 20 + j * 50 - ALIEN_OCTOPUS_WIDTH / 2,
+									100 + 30 * i, ALIEN_HEIGHT, ALIEN_OCTOPUS_WIDTH, p));
+						} else if (alienType.equals(AlienSquid.class.getSimpleName())) {
+							lAlien.add(new AlienSquid( 20 + j * 50 - ALIEN_SQUID_WIDTH / 2, 100 + 30 * i,
+									ALIEN_HEIGHT, ALIEN_SQUID_WIDTH, p));
+						}
+
+					}
+				}
+			}
+
+		} else {
+
+			for (int i = 0; i < 11; i++) {
+				lAlien.add(new AlienSquid( 20 + i * 50 - ALIEN_SQUID_WIDTH / 2, ALIEN_ROW[0],
+						ALIEN_HEIGHT, ALIEN_SQUID_WIDTH, p));
+				lAlien.add(new AlienCrab( 20 + i * 50 - ALIEN_CRAB_WIDTH / 2, ALIEN_ROW[1], ALIEN_HEIGHT,
+						ALIEN_CRAB_WIDTH, p));
+				lAlien.add(new AlienCrab( 20 + i * 50 - ALIEN_CRAB_WIDTH / 2, ALIEN_ROW[2], ALIEN_HEIGHT,
+						ALIEN_CRAB_WIDTH, p));
+				lAlien.add(new AlienOctopus( 20 + i * 50 - ALIEN_OCTOPUS_WIDTH / 2, ALIEN_ROW[3],
+						ALIEN_HEIGHT, ALIEN_OCTOPUS_WIDTH, p));
+				lAlien.add(new AlienOctopus( 20 + i * 50 - ALIEN_OCTOPUS_WIDTH / 2, ALIEN_ROW[4],
+						ALIEN_HEIGHT, ALIEN_OCTOPUS_WIDTH, p));
+			}
 		}
 		lGameObject.addAll(lAlien);
 	}
@@ -63,7 +89,8 @@ public class World {
 			player.setLives(player.getLives() - 1);
 			alienShoot.hasCollided = true;
 		}
-		if( alienShoot != null && playerShoot != null && alienShoot.collidesWith(playerShoot) && !alienShoot.hasCollided){
+		if (alienShoot != null && playerShoot != null && alienShoot.collidesWith(playerShoot)
+				&& !alienShoot.hasCollided) {
 			alienShoot.setLives(alienShoot.getLives() - 1);
 			playerShoot.setLives(playerShoot.getLives() - 1);
 			alienShoot.hasCollided = true;
@@ -88,11 +115,14 @@ public class World {
 			if (go.isDead() && !(go instanceof PlayerShip)) {
 				deadObjects.add(go);
 				if (go instanceof Alien) {
-					player.setPoints(player.getPoints() + ((Alien)go).getPoints());
+					player.setPoints(player.getPoints() + ((Alien) go).getPoints());
 					lAlien.remove(go);
 				}
 			}
 		}
+		alienSpeed = -(2f / 11f) * lAlien.size() + maxSpeed;
+		Alien.setSpeed(alienSpeed);
+
 		changeAlienDirection();
 		shootAlien();
 		if (alienShoot.collidesDownBorder()) {
@@ -123,8 +153,6 @@ public class World {
 			for (Alien alien : lAlien) {
 				alien.setY(alien.getY() + 10);
 			}
-			alienSpeed += alienAcceleration;
-			Alien.setSpeed(alienSpeed);
 		}
 	}
 
@@ -151,5 +179,17 @@ public class World {
 					1 * 3, p);
 			lGameObject.add(playerShoot);
 		}
+	}
+
+	public String[][] loadLevel(String file) {
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+			String[][] lEnemies = (String[][]) ois.readObject();
+			return lEnemies;
+		} catch (IOException e) {
+			System.out.println("Error al leer el fichero");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error en tipo de dato");
+		}
+		return new String[10][12];
 	}
 }

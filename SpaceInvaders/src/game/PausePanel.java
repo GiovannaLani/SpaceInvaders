@@ -9,18 +9,21 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+
+import gui.Menu.Menu;
+import gui.customComponents.ButtonPixel;
 
 public class PausePanel extends JPanel{
-	public PausePanel(GamePanel p) {
+
+	private static final long serialVersionUID = 1L;
+
+	public PausePanel(GamePanel p, Menu menu) {
 		setPreferredSize(new Dimension(320, 350));
-		JButton bContinue = new JButton("CONTINUAR");
-		JButton bRestart = new JButton("REINICIAR");
-		JButton bMenu = new JButton("MENÚ");
+		ButtonPixel bContinue = new ButtonPixel("CONTINUAR",10);
+		ButtonPixel bRestart = new ButtonPixel("REINICIAR",10);
+		ButtonPixel bMenu = new ButtonPixel("MENU",10);
 		buttonStyle(bMenu);
 		buttonStyle(bContinue);
 		buttonStyle(bRestart);
@@ -55,7 +58,9 @@ public class PausePanel extends JPanel{
 		bMenu.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {		
+			public void actionPerformed(ActionEvent e) {
+				p.disposeWindow();
+				menu.setVisible(true);
 			}
 		});
 		

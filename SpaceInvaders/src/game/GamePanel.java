@@ -2,6 +2,7 @@ package game;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -15,8 +16,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import game.PausePanel;
-import game.World;
+import domain.Player;
+import gui.Menu.Menu;
+
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
 
@@ -28,17 +30,23 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	private boolean gamePaused;
 	private PausePanel pausePanel;
 	public JLayeredPane layeredPane;
+	private boolean customLevel;
+	private SpaceInvaders window;
 
-	public GamePanel() {
+	public GamePanel(Player player , boolean customLevel, Menu menu , SpaceInvaders window) {
+		this.customLevel=customLevel;
+		this.window=window;
 		setBackground(Color.black);
+		setAlignmentY(Component.CENTER_ALIGNMENT);
+		
 		setPreferredSize(new Dimension(640, 700));
 		setFocusable(true);
 		addKeyListener(this);
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(640,700));
-		world= new World(this);
+		world= new World(this, customLevel);
 		gamePaused = false;
-		pausePanel = new PausePanel(this);
+		pausePanel = new PausePanel(this, menu);
 		pausePanel.setBounds(160,175,(int)pausePanel.getPreferredSize().getWidth(),(int)pausePanel.getPreferredSize().getHeight());
 		pausePanel.setVisible(false);
 		layeredPane.add(this,JLayeredPane.DEFAULT_LAYER);
@@ -191,9 +199,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		}
 		pausePanel.setVisible(false);
 		this.requestFocus();
-		world = new World(this);
+		world = new World(this,customLevel);
 		gamePaused = false;
 		startGameThread();
 	}
-
+	public void disposeWindow() {
+		window.dispose();
+	}
 }
