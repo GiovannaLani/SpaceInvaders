@@ -23,12 +23,6 @@ public class Menu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> {
-			new Menu();
-		});
-	}
-
 	public Menu() {
 		// Conficuración ventana
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
