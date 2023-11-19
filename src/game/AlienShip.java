@@ -73,4 +73,8 @@ public class AlienShip extends Alien {
 	public void setAlienShipSpeed(float speed) {
 		this.alienShipSpeed = speed;
 	}
+	
+	public float getAlienShipSpeed() {
+		return alienShipSpeed;
+	}
 }

@@ -1,4 +1,4 @@
-package test;
+package gameTest;
 
 
 import static org.junit.Assert.*;
@@ -13,9 +13,9 @@ import domain.Game;
 import domain.Player;
 import game.Alien;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.time.LocalDate;
+//import java.awt.*;
+//import java.awt.image.BufferedImage;
+//import java.time.LocalDate;
 
 public class AlienTest {
 

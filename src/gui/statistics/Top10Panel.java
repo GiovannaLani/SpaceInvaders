@@ -1,12 +1,10 @@
 package gui.statistics;
 
 import java.awt.BorderLayout;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,7 +13,7 @@ import javax.swing.border.Border;
 import controller.DBException;
 import controller.DatabaseController;
 import domain.Game;
-import domain.Player;
+
 
 public class Top10Panel extends JPanel {
 
