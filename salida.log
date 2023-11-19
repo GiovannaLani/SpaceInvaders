@@ -1,0 +1,320 @@
+nov 19, 2023 1:36:15 P. M. game.World <init>
+INFORMACIÓN: Se ha creado un nuevo Mundo
+nov 19, 2023 1:36:16 P. M. game.World loadLevel
+INFORMACIÓN: Fichero cargado correctamente
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnReshaping
+DETALLADO: this = game.PausePanel[,160,175,320x350,invalid,layout=java.awt.GridLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=320,height=350]]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = game.PausePanel[,160,175,320x350,invalid,layout=java.awt.GridLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=320,height=350]]; containing window is null
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = game.PausePanel[,160,175,320x350,invalid,hidden,layout=java.awt.GridLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=320,height=350]]; isLightweight=false
+nov 19, 2023 1:36:16 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = game.PausePanel[,160,175,320x350,invalid,hidden,layout=java.awt.GridLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=320,height=350]]; isLightweight = false
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = game.PausePanel[,160,175,320x350,invalid,hidden,layout=java.awt.GridLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=320,height=350]]; containing window is null
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnReshaping
+DETALLADO: this = game.GamePanel[,0,0,640x700,invalid,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.5,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700]]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = game.GamePanel[,0,0,640x700,invalid,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.5,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700]]; containing window is null
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnShowing
+DETALLADO: this = game.SpaceInvaders[frame2,0,0,132x37,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,0,0,132x37,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = false; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnShowing
+DETALLADO: this = javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnShowing
+DETALLADO: this = javax.swing.JPanel[null.glassPane,0,0,0x0,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = javax.swing.JPanel[null.glassPane,0,0,0x0,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnShowing
+DETALLADO: this = javax.swing.JLayeredPane[null.layeredPane,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = javax.swing.JLayeredPane[null.layeredPane,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnShowing
+DETALLADO: this = javax.swing.JPanel[null.contentPane,0,0,0x0,invalid,layout=javax.swing.JRootPane$1,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,0,0,132x37,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnShowing
+DETALLADO: this = javax.swing.JLayeredPane[,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700],optimizedDrawingPossible=false]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = javax.swing.JLayeredPane[,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700],optimizedDrawingPossible=false]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnShowing
+DETALLADO: this = game.PausePanel[,160,175,320x350,invalid,hidden,layout=java.awt.GridLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=320,height=350]]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,0,0,132x37,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnShowing
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@15d2535d,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=CONTINUAR,defaultCapable=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@15d2535d,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=CONTINUAR,defaultCapable=true]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnShowing
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@31ba1cb3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=REINICIAR,defaultCapable=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@31ba1cb3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=REINICIAR,defaultCapable=true]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnShowing
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@2ecb83a3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=MENU,defaultCapable=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@2ecb83a3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=MENU,defaultCapable=true]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnShowing
+DETALLADO: this = game.GamePanel[,0,0,640x700,invalid,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.5,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700]]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,0,0,132x37,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnReshaping
+DETALLADO: this = javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnReshaping
+DETALLADO: this = javax.swing.JLayeredPane[null.layeredPane,0,0,640x700,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = javax.swing.JLayeredPane[null.layeredPane,0,0,640x700,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnReshaping
+DETALLADO: this = javax.swing.JPanel[null.glassPane,0,0,640x700,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = javax.swing.JPanel[null.glassPane,0,0,640x700,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnReshaping
+DETALLADO: this = javax.swing.JPanel[null.contentPane,0,0,640x700,invalid,layout=javax.swing.JRootPane$1,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,0,0,654x737,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = javax.swing.JPanel[null.glassPane,0,0,640x700,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = javax.swing.JPanel[null.glassPane,0,0,640x700,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnReshaping
+DETALLADO: this = javax.swing.JLayeredPane[,0,0,640x700,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700],optimizedDrawingPossible=false]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = javax.swing.JLayeredPane[,0,0,640x700,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700],optimizedDrawingPossible=false]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnReshaping
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,1,320x116,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@15d2535d,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=CONTINUAR,defaultCapable=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,1,320x116,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@15d2535d,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=CONTINUAR,defaultCapable=true]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnReshaping
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,117,320x116,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@31ba1cb3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=REINICIAR,defaultCapable=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,117,320x116,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@31ba1cb3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=REINICIAR,defaultCapable=true]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnReshaping
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,233,320x116,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@2ecb83a3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=MENU,defaultCapable=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,233,320x116,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@2ecb83a3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=MENU,defaultCapable=true]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,1,320x116,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@15d2535d,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=CONTINUAR,defaultCapable=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,1,320x116,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@15d2535d,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=CONTINUAR,defaultCapable=true]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,117,320x116,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@31ba1cb3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=REINICIAR,defaultCapable=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,117,320x116,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@31ba1cb3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=REINICIAR,defaultCapable=true]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,233,320x116,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@2ecb83a3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=MENU,defaultCapable=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,233,320x116,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@2ecb83a3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=MENU,defaultCapable=true]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = game.PausePanel[,160,175,320x350,hidden,layout=java.awt.GridLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=320,height=350]]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,0,0,654x737,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = game.GamePanel[,0,0,640x700,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.5,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700]]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,0,0,654x737,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = javax.swing.JLayeredPane[,0,0,640x700,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700],optimizedDrawingPossible=false]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = javax.swing.JLayeredPane[,0,0,640x700,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700],optimizedDrawingPossible=false]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = javax.swing.JPanel[null.contentPane,0,0,640x700,layout=javax.swing.JRootPane$1,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,0,0,654x737,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = javax.swing.JLayeredPane[null.layeredPane,0,0,640x700,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = javax.swing.JLayeredPane[null.layeredPane,0,0,640x700,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: this = javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]; areBoundsValid = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = game.SpaceInvaders[frame2,0,0,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,0,0,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnShowing
+DETALLADO: this = game.SpaceInvaders[frame2,313,0,654x737,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,313,0,654x737,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: sun.awt.TimedWindowEvent[WINDOW_LOST_FOCUS,opposite=null,oldState=0,newState=0] on frame1
+nov 19, 2023 1:36:16 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: Active gui.Menu.InfoWindow[frame1,318,229,644x263,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,630x226,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true], Current focused gui.Menu.InfoWindow[frame1,318,229,644x263,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,630x226,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true], losing focus gui.Menu.InfoWindow[frame1,318,229,644x263,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,630x226,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true] opposite null
+nov 19, 2023 1:36:16 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: java.awt.event.WindowEvent[WINDOW_DEACTIVATED,opposite=null,oldState=0,newState=0] on frame1
+nov 19, 2023 1:36:16 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: java.awt.event.WindowEvent[WINDOW_CLOSED,opposite=null,oldState=0,newState=0] on frame1
+nov 19, 2023 1:36:16 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = game.SpaceInvaders[frame2,313,0,654x737,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,313,0,654x737,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = game.SpaceInvaders[frame2,313,0,654x737,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,313,0,654x737,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: sun.awt.TimedWindowEvent[WINDOW_GAINED_FOCUS,opposite=null,oldState=0,newState=0] on frame2
+nov 19, 2023 1:36:16 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: java.awt.event.WindowEvent[WINDOW_ACTIVATED,opposite=null,oldState=0,newState=0] on frame2
+nov 19, 2023 1:36:16 P. M. javax.swing.SortingFocusTraversalPolicy getFirstComponent
+DETALLADO: ### Getting first component in game.SpaceInvaders[frame2,313,0,654x737,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+nov 19, 2023 1:36:16 P. M. javax.swing.SortingFocusTraversalPolicy getFirstComponent
+DETALLADO: ### Cycle is [game.SpaceInvaders[frame2,313,0,654x737,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true], javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=], javax.swing.JLayeredPane[null.layeredPane,0,0,640x700,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true], javax.swing.JPanel[null.contentPane,0,0,640x700,layout=javax.swing.JRootPane$1,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=], javax.swing.JLayeredPane[,0,0,640x700,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700],optimizedDrawingPossible=false], game.GamePanel[,0,0,640x700,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.5,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700]]]
+nov 19, 2023 1:36:16 P. M. java.awt.Container mixOnValidating
+DETALLADO: this = game.SpaceInvaders[frame2,313,0,654x737,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]
+nov 19, 2023 1:36:16 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,313,0,654x737,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = false
+nov 19, 2023 1:36:16 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: java.awt.event.WindowEvent[WINDOW_OPENED,opposite=null,oldState=0,newState=0] on frame2
+nov 19, 2023 1:36:16 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: java.awt.event.FocusEvent[FOCUS_GAINED,permanent,opposite=null,cause=ACTIVATION] on game.GamePanel[,0,0,640x700,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.5,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700]]
+nov 19, 2023 1:36:16 P. M. sun.awt.im.InputContext activateInputMethod
+DETALLADO: Current client component game.GamePanel[,0,0,640x700,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.5,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700]]
+nov 19, 2023 1:36:17 P. M. game.World updateLives
+DETALLADO: La vida de un escudo ha disminuido por el disparo de un alien
+nov 19, 2023 1:36:17 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:19 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:21 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:22 P. M. game.World updateLives
+DETALLADO: La vida de un escudo ha disminuido por el disparo de un alien
+nov 19, 2023 1:36:22 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:24 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:26 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:27 P. M. game.World updateLives
+DETALLADO: La vida de un escudo ha disminuido por el disparo de un alien
+nov 19, 2023 1:36:27 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:29 P. M. game.World updateLives
+DETALLADO: La vida de un escudo ha disminuido por el disparo de un alien
+nov 19, 2023 1:36:29 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:30 P. M. game.World updateLives
+DETALLADO: La vida de un escudo ha disminuido por el disparo de un alien
+nov 19, 2023 1:36:30 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:31 P. M. game.World updateLives
+DETALLADO: La vida de un escudo ha disminuido por el disparo de un alien
+nov 19, 2023 1:36:31 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:32 P. M. game.World updateLives
+DETALLADO: La vida de un escudo ha disminuido por el disparo de un alien
+nov 19, 2023 1:36:32 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:33 P. M. game.World updateLives
+DETALLADO: La vida de un escudo ha disminuido por el disparo de un alien
+nov 19, 2023 1:36:33 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:34 P. M. game.World updateLives
+DETALLADO: La vida de un escudo ha disminuido por el disparo de un alien
+nov 19, 2023 1:36:34 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:35 P. M. game.World updateLives
+DETALLADO: La vida de un escudo ha disminuido por el disparo de un alien
+nov 19, 2023 1:36:35 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:36 P. M. game.World updateLives
+DETALLADO: La vida de un escudo ha disminuido por el disparo de un alien
+nov 19, 2023 1:36:36 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:37 P. M. game.World updateLives
+DETALLADO: La vida de un escudo ha disminuido por el disparo de un alien
+nov 19, 2023 1:36:37 P. M. game.World shootAlien
+DETALLADO: Disparo de un alien generado
+nov 19, 2023 1:36:43 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: sun.awt.TimedWindowEvent[WINDOW_CLOSING,opposite=null,oldState=0,newState=0] on frame2
+nov 19, 2023 1:36:43 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; isLightweight=false
+nov 19, 2023 1:36:43 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; isLightweight = false
+nov 19, 2023 1:36:43 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+nov 19, 2023 1:36:43 P. M. sun.awt.KeyboardFocusManagerPeerImpl clearGlobalFocusOwner
+DETALLADO: Clearing global focus owner game.GamePanel[,0,0,640x700,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.5,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700]]
+nov 19, 2023 1:36:43 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = game.GamePanel[,0,0,640x700,invalid,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.5,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700]]; isLightweight=true
+nov 19, 2023 1:36:43 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = game.GamePanel[,0,0,640x700,invalid,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.5,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700]]; isLightweight = true
+nov 19, 2023 1:36:43 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+nov 19, 2023 1:36:43 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,233,320x116,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@2ecb83a3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=MENU,defaultCapable=true]; isLightweight=true
+nov 19, 2023 1:36:43 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,233,320x116,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@2ecb83a3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=MENU,defaultCapable=true]; isLightweight = true
+nov 19, 2023 1:36:43 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+nov 19, 2023 1:36:43 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,117,320x116,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@31ba1cb3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=REINICIAR,defaultCapable=true]; isLightweight=true
+nov 19, 2023 1:36:43 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,117,320x116,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@31ba1cb3,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=REINICIAR,defaultCapable=true]; isLightweight = true
+nov 19, 2023 1:36:43 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+nov 19, 2023 1:36:43 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,1,320x116,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@15d2535d,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=CONTINUAR,defaultCapable=true]; isLightweight=true
+nov 19, 2023 1:36:43 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = gui.customComponents.ButtonPixel[,0,1,320x116,invalid,alignmentX=0.0,alignmentY=0.5,border=javax.swing.border.LineBorder@15d2535d,flags=16777512,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=false,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=CONTINUAR,defaultCapable=true]; isLightweight = true
+nov 19, 2023 1:36:43 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+nov 19, 2023 1:36:43 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = game.PausePanel[,160,175,320x350,invalid,hidden,layout=java.awt.GridLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=320,height=350]]; isLightweight=true
+nov 19, 2023 1:36:43 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = game.PausePanel[,160,175,320x350,invalid,hidden,layout=java.awt.GridLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=320,height=350]]; isLightweight = true
+nov 19, 2023 1:36:43 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+nov 19, 2023 1:36:43 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = javax.swing.JLayeredPane[,0,0,640x700,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700],optimizedDrawingPossible=false]; isLightweight=true
+nov 19, 2023 1:36:43 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = javax.swing.JLayeredPane[,0,0,640x700,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700],optimizedDrawingPossible=false]; isLightweight = true
+nov 19, 2023 1:36:43 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+nov 19, 2023 1:36:43 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = javax.swing.JPanel[null.contentPane,0,0,640x700,invalid,layout=javax.swing.JRootPane$1,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight=true
+nov 19, 2023 1:36:43 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = javax.swing.JPanel[null.contentPane,0,0,640x700,invalid,layout=javax.swing.JRootPane$1,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]; isLightweight = true
+nov 19, 2023 1:36:43 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+nov 19, 2023 1:36:43 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = javax.swing.JLayeredPane[null.layeredPane,0,0,640x700,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]; isLightweight=true
+nov 19, 2023 1:36:43 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = javax.swing.JLayeredPane[null.layeredPane,0,0,640x700,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=0,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true]; isLightweight = true
+nov 19, 2023 1:36:43 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+nov 19, 2023 1:36:43 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = javax.swing.JPanel[null.glassPane,0,0,640x700,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]; isLightweight=true
+nov 19, 2023 1:36:43 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = javax.swing.JPanel[null.glassPane,0,0,640x700,invalid,hidden,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777217,maximumSize=,minimumSize=,preferredSize=]; isLightweight = true
+nov 19, 2023 1:36:43 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = true; disposing = true
+nov 19, 2023 1:36:43 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]; isLightweight=true
+nov 19, 2023 1:36:43 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=]; isLightweight = true
+nov 19, 2023 1:36:43 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,352,16,654x737,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = false; disposing = true
+nov 19, 2023 1:36:43 P. M. java.awt.Container mixOnHiding
+DETALLADO: this = game.SpaceInvaders[frame2,352,16,654x737,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; isLightweight=false
+nov 19, 2023 1:36:43 P. M. java.awt.Component mixOnHiding
+DETALLADO: this = game.SpaceInvaders[frame2,352,16,654x737,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; isLightweight = false
+nov 19, 2023 1:36:43 P. M. java.awt.Component isMixingNeeded
+DETALLADO: containing window = game.SpaceInvaders[frame2,352,16,654x737,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]; has h/w descendants = false; has l/w descendants = false; disposing = true
+nov 19, 2023 1:36:43 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: java.awt.event.FocusEvent[FOCUS_LOST,permanent,opposite=null,cause=CLEAR_GLOBAL_FOCUS_OWNER] on game.GamePanel[,0,0,640x700,invalid,layout=java.awt.FlowLayout,alignmentX=0.0,alignmentY=0.5,border=,flags=9,maximumSize=,minimumSize=,preferredSize=java.awt.Dimension[width=640,height=700]]
+nov 19, 2023 1:36:43 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: sun.awt.TimedWindowEvent[WINDOW_LOST_FOCUS,opposite=null,oldState=0,newState=0] on frame2
+nov 19, 2023 1:36:43 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: Active game.SpaceInvaders[frame2,352,16,654x737,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true], Current focused game.SpaceInvaders[frame2,352,16,654x737,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true], losing focus game.SpaceInvaders[frame2,352,16,654x737,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=DISPOSE_ON_CLOSE,rootPane=javax.swing.JRootPane[,7,30,640x700,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true] opposite null
+nov 19, 2023 1:36:43 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: java.awt.event.WindowEvent[WINDOW_DEACTIVATED,opposite=null,oldState=0,newState=0] on frame2
+nov 19, 2023 1:36:43 P. M. java.awt.DefaultKeyboardFocusManager dispatchEvent
+DETALLADO: java.awt.event.WindowEvent[WINDOW_CLOSED,opposite=null,oldState=0,newState=0] on frame2

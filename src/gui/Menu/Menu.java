@@ -5,6 +5,10 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -23,7 +27,17 @@ public class Menu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
+	private static Logger logger = Logger.getLogger(Menu.class.getName());
+	
 	public Menu() {
+		
+		//logger
+		try (FileInputStream fis = new FileInputStream("res/logger.properties")) {
+			LogManager.getLogManager().readConfiguration(fis);
+		} catch (IOException e) {
+			logger.severe( "No se pudo leer el fichero de configuración del logger");
+		}
+
 		// Conficuración ventana
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setTitle("Menú Principal");
@@ -70,23 +84,27 @@ public class Menu extends JFrame {
 		// Listeners
 		bPlay.addActionListener(e -> {
 			SwingUtilities.invokeLater(() -> {
+				logger.info("Se ha visualizado la ventana InfoWindow");
 				new InfoWindow(Menu.this);
 			});
 			Menu.this.setVisible(false);
 		});
 		bCustomLevel.addActionListener(e -> {
 			SwingUtilities.invokeLater(() -> {
+				logger.info("Se ha visualizado la ventana CustomLevelWindow");
 				new CustomLevelWindow(Menu.this);
 			});
 			Menu.this.setVisible(false);
 		});
 		bStatistics.addActionListener(e -> {
 			SwingUtilities.invokeLater(() -> {
+				logger.info("Se ha visualizado la ventana StatisticsWindow");
 				new StatisticsWindow(Menu.this);
 			});
 			Menu.this.setVisible(false);
 		});
 		bControl.addActionListener(e -> {
+			logger.info("Se ha visualizado la ventana ControlWindow");
 			new ControlWindow(Menu.this);
 		});
 
@@ -106,6 +124,7 @@ public class Menu extends JFrame {
 						JOptionPane.YES_NO_OPTION);
 				if (input == JOptionPane.YES_OPTION) {
 					Menu.this.dispose();
+					logger.info("Se ha cerrado la ventana");
 				}
 			}
 

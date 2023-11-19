@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import controller.DBException;
 import controller.DatabaseController;
@@ -18,6 +20,8 @@ public class World {
 	private static final int ALIEN_OCTOPUS_WIDTH = 12 * 3;
 	private static final int ALIEN_SQUID_WIDTH = 8 * 3;
 	private static final int ALIEN_HEIGHT = 8 * 3;
+
+	private static Logger logger = Logger.getLogger(World.class.getName());
 
 	private static Random random = new Random();
 
@@ -33,9 +37,19 @@ public class World {
 	private AlienShoot alienShoot;
 	private PlayerShip player;
 	private Shield shield;
-	
+
 	public World(GamePanel p, boolean customized, int points, int lives) {
 		super();
+
+		//logger
+		try (FileInputStream fis = new FileInputStream("res/logger.properties")) {
+			LogManager.getLogManager().readConfiguration(fis);
+		} catch (IOException e) {
+			logger.severe( "No se pudo leer el fichero de configuración del logger");
+		}
+		logger.info("Se ha creado un nuevo Mundo");
+		
+		
 		this.p = p;
 		lGameObject = new ArrayList<>();
 		lAlien = new ArrayList<>();
@@ -50,7 +64,7 @@ public class World {
 		for(int i=0; i<4;i++) {
 			createShield(60 + 150*i);
 		}
-		
+
 		String[][] lEnemies = loadLevel("res/data/level.dat");
 		if (customized && lEnemies != null) {
 			for (int i = 0; i < lEnemies.length; i++) {
@@ -97,7 +111,7 @@ public class World {
 	public void setPlayer(PlayerShip player) {
 		this.player = player;
 	}
-	
+
 	public Shield getShield() {
 		return shield;
 	}
@@ -111,6 +125,7 @@ public class World {
 			alienShoot.setLives(alienShoot.getLives() - 1);
 			player.setLives(player.getLives() - 1);
 			alienShoot.hasCollided = true;
+			logger.fine("La vida de un escudo ha disminuido por el disparo de un alien");
 		}
 		if (alienShoot != null && playerShoot != null && alienShoot.collidesWith(playerShoot)
 				&& !alienShoot.hasCollided) {
@@ -119,19 +134,22 @@ public class World {
 			alienShoot.hasCollided = true;
 			playerShoot.hasCollided = true;
 			playerShoot = null;
+			logger.fine("Los disparos han colisionado");
 		}
-	
+
 		for(Shield shield : lShield) {
 			if (alienShoot != null && alienShoot.collidesWith(shield) && !alienShoot.hasCollided) {
 				alienShoot.setLives(alienShoot.getLives() - 1);
 				shield.setLives(shield.getLives() - 1);
 				alienShoot.hasCollided = true;
+				logger.fine("La vida de un escudo ha disminuido por el disparo de un alien");
 			}
 			if (playerShoot != null && playerShoot.collidesWith(shield) && !playerShoot.hasCollided) {
 				playerShoot.setLives(playerShoot.getLives() - 1);
 				shield.setLives(shield.getLives() - 1);
 				playerShoot.hasCollided = true;
 				playerShoot = null;
+				logger.fine("La vida de un escudo ha disminuido por el disparo del jugador");
 			}
 		}
 		for (Alien alien : lAlien) {
@@ -142,6 +160,7 @@ public class World {
 				playerShoot = null;
 				if(alien instanceof AlienShip) {
 					((AlienShip) alien).setKilled(true);
+					logger.fine("El jugador ha matado a un alien");
 				}
 			}
 		}
@@ -252,6 +271,7 @@ public class World {
 					alienShoot = new AlienShoot(alien.getX() + alien.getWidth() / 2, alien.getY() + alien.getHeight(), 7 * 3,
 							3 * 3, p);
 					lGameObject.add(alienShoot);
+					logger.fine("Disparo de un alien generado");
 				}
 			}
 		}
@@ -262,17 +282,19 @@ public class World {
 			playerShoot = new PlayerShoot(player.getX() + player.getWidth() / 2 - (2 * 3) / 2, player.getY(), 6 * 3,
 					1 * 3, p);
 			lGameObject.add(playerShoot);
+			logger.fine("Disparo del jugador generado");
 		}
 	}
 
 	public String[][] loadLevel(String file) {
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
 			String[][] lEnemies = (String[][]) ois.readObject();
+			logger.info("Fichero cargado correctamente");
 			return lEnemies;
 		} catch (IOException e) {
-			System.out.println("Error al leer el fichero");
+			logger.warning("Error al leer el fichero");
 		} catch (ClassNotFoundException e) {
-			System.out.println("Error en tipo de dato");
+			logger.warning("Error en tipo de dato");
 		}
 		return new String[10][12];
 	}
@@ -286,7 +308,7 @@ public class World {
 		return false;
 
 	}
-	
+
 	public void createShield(int posX) {
 		for(int i = 0; i < 4; i++) {
 			if(i==0) {

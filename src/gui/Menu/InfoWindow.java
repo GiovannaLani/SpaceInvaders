@@ -6,16 +6,21 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.SwingUtilities;
@@ -47,10 +52,20 @@ public class InfoWindow extends JFrame {
 	private boolean customLevel;
 	private Menu menu;
 
+	private static Logger logger = Logger.getLogger(InfoWindow.class.getName());
+
 	public InfoWindow(Menu menu) {
 		super();
 		this.menu = menu;
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+		//logger
+		try (FileInputStream fis = new FileInputStream("res/logger.properties")) {
+			LogManager.getLogManager().readConfiguration(fis);
+		} catch (IOException e) {
+			logger.severe( "No se pudo leer el fichero de configuración del logger");
+		}
+
 	}
 
 	// creacion lista de paises
@@ -67,6 +82,7 @@ public class InfoWindow extends JFrame {
 
 		// elimina elementos duplicados y los devuelve en el mismo orden
 		Set<String> setCountries = new LinkedHashSet<>(countries);
+		logger.fine("Se ha creado la lista de paises");
 		return new ArrayList<String>(setCountries);
 	}
 
@@ -142,7 +158,7 @@ public class InfoWindow extends JFrame {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
+
 		});
 		bCancel.addActionListener((e) -> {
 			this.dispose();
@@ -159,12 +175,18 @@ public class InfoWindow extends JFrame {
 		setVisible(true);
 	}
 	public void startGame() {
-		this.dispose();
 		customLevel = false;
 		if (jbLevelType.getSelectedIndex() == 1) {
 			customLevel = true;
 		}
-		Player player= new Player(txtName.getText(), String.valueOf(pfPassword.getPassword()), jbCountries.getSelectedItem().toString());
-		SwingUtilities.invokeLater(() -> new SpaceInvaders(player, new Game(player,0,0,null,1), customLevel, menu));
+		if (txtName.getText().isEmpty() || pfPassword.getPassword().length == 0) {
+			JOptionPane.showMessageDialog(null,"Hay campos sin rellenar");
+		}else {
+			Player player= new Player(txtName.getText(), String.valueOf(pfPassword.getPassword()), jbCountries.getSelectedItem().toString());
+			SwingUtilities.invokeLater(() -> new SpaceInvaders(player, new Game(player,0,0,null,1), customLevel, menu));
+			this.dispose();
+		}
 	}
+
+
 }

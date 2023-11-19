@@ -16,6 +16,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -47,7 +49,18 @@ public class CustomLevelWindow extends JFrame {
 	private String[][] lEnemies;
 	private String selectedButton;
 
+	private static Logger logger = Logger.getLogger(CustomLevelWindow.class.getName());
+	
 	public CustomLevelWindow(Menu menuWindow) {
+		
+		//logger
+		try (FileInputStream fis = new FileInputStream("res/logger.properties")) {
+			LogManager.getLogManager().readConfiguration(fis);
+		} catch (IOException e) {
+			logger.severe( "No se pudo leer el fichero de configuración del logger");
+		}
+		logger.info("Se ha creado la ventana de nivel personalizado");
+		
 		// cerrar ventana
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		// Cargar lista de alienigenas
@@ -93,7 +106,6 @@ public class CustomLevelWindow extends JFrame {
 			for (int j = 0; j <= 9; j++) {
 				if (lEnemies[j][i] != null) {
 					columnNum = i + 1;
-					System.out.println(columnNum);
 					break;
 				}
 			}
@@ -153,17 +165,17 @@ public class CustomLevelWindow extends JFrame {
 		LevelTableModel tableModel = new LevelTableModel(lEnemies);
 		JTable jTable = new JTable(tableModel);
 		jTable.setBorder(lineBorder);
-		JScrollPane scrollPain = new JScrollPane(jTable);
-		scrollPain.setBorder(empty);
-		scrollPain.setBackground(Color.BLACK);
-		scrollPain.getViewport().setBackground(Color.BLACK);
+		JScrollPane scrollPane = new JScrollPane(jTable);
+		scrollPane.setBorder(empty);
+		scrollPane.setBackground(Color.BLACK);
+		scrollPane.getViewport().setBackground(Color.BLACK);
 		jTable.setDefaultRenderer(Object.class, new LevelRender());
 		jTable.setTableHeader(null);
 		jTable.setCellEditor(null);
 		jTable.setRowHeight(40);
 		jTable.setGridColor(Color.WHITE);
 		jTable.setBackground(Color.BLACK);
-		pCenter.add(scrollPain);
+		pCenter.add(scrollPane);
 
 		// Añadir paneles
 		add(pCenter);
@@ -173,6 +185,7 @@ public class CustomLevelWindow extends JFrame {
 		// Listener al cambiar JSpinner
 		ChangeListener changeListener = e -> {
 			tableModel.fireTableStructureChanged();
+			logger.fine("Se han realizado cambios en el JSpinner");
 			// elimina de la lista los enemigos que ya no se ven
 			for (int i = 0; i < lEnemies.length; i++) {
 				for (int j = 11; j >= Integer.parseInt(jsColumn.getValue().toString()); j--) {
@@ -200,6 +213,7 @@ public class CustomLevelWindow extends JFrame {
 					lEnemies[jTable.rowAtPoint(point)][jTable.columnAtPoint(point)] = null;
 				}
 				tableModel.fireTableDataChanged();
+				logger.fine("Modificación del valor en la tabla al hacer click sobre una celda");
 
 			}
 		});
@@ -207,16 +221,19 @@ public class CustomLevelWindow extends JFrame {
 		ActionListener listenerRB = e -> {
 			if (e.getSource().equals(rbCrab)) {
 				selectedButton = AlienCrab.class.getSimpleName();
+				logger.fine("Se ha seleccionado el radioButton AlienCrab");
 			} else if (e.getSource().equals(rbOctopus)) {
 				selectedButton = AlienOctopus.class.getSimpleName();
+				logger.fine("Se ha seleccionado el radioButton AlienOctopus");
 			} else {
 				selectedButton = AlienSquid.class.getSimpleName();
+				logger.fine("Se ha seleccionado el radioButton AlienSquid");
 			}
 		};
 		rbCrab.addActionListener(listenerRB);
 		rbOctopus.addActionListener(listenerRB);
 		rbSquid.addActionListener(listenerRB);
-		// Listenr botón guardar
+		// Listener botón guardar
 		bSave.addActionListener(new ActionListener() {
 
 			@Override
@@ -239,12 +256,15 @@ public class CustomLevelWindow extends JFrame {
 				} else {
 					try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("res/data/level.dat"))) {
 						oos.writeObject(lEnemies);
+						logger.info("Fichero 'level.dat' guardado correctamente");
 						CustomLevelWindow.this.dispose();
 						menuWindow.setVisible(true);
 					} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
+						logger.warning("No se encuentra el fichero 'level.dat'");
 					} catch (IOException e1) {
 						e1.printStackTrace();
+						logger.warning("Error al guardar el fichero 'level.dat'");
 					}
 				}
 			}
@@ -255,6 +275,7 @@ public class CustomLevelWindow extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				menuWindow.setVisible(true);
+				logger.info("Visualización de la ventana menuWindow");
 			}
 
 		});
@@ -268,11 +289,14 @@ public class CustomLevelWindow extends JFrame {
 	public String[][] loadLevel(String file) {
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
 			lEnemies = (String[][]) ois.readObject();
+			logger.info("Fichero cargado correctamente");
 			return lEnemies;
 		} catch (IOException e) {
 			e.printStackTrace();
+			logger.warning("Error al leer el fichero");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+			logger.warning("Error en tipo de dato");
 		}
 		return new String[10][12];
 	}
