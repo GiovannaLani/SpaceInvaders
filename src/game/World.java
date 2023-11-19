@@ -9,6 +9,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import controller.DBException;
+import controller.DatabaseController;
+
 public class World {
 	private static final int[] ALIEN_ROW = { 100, 130, 160, 190, 220 };
 	private static final int ALIEN_CRAB_WIDTH = 11 * 3;
@@ -198,6 +201,14 @@ public class World {
 		if(lAlien.isEmpty()) {
 			p.shouldRestart = true;
 		}
+		if(player.isDead()) {
+			p.getGame().setScore(player.getPoints());
+			try {
+				DatabaseController.getInstance().insertRecord(p.getGame());
+			} catch (DBException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void changeAlienDirection() {
@@ -215,7 +226,7 @@ public class World {
 			}
 		}
 		if (Alien.isChangeDirection()) {
-			Alien.direction *= -1;
+			Alien.setDirection(Alien.getDirection()*-1);
 			for (Alien alien : lAlien) {
 				if(!(alien instanceof AlienShip)) {
 					alien.setY(alien.getY() + 10);

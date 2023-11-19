@@ -21,6 +21,9 @@ import javax.swing.JPasswordField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
+import controller.DBException;
+import controller.DatabaseController;
+import domain.Game;
 import domain.Player;
 import game.SpaceInvaders;
 import gui.customComponents.ButtonPixel;
@@ -126,12 +129,20 @@ public class InfoWindow extends JFrame {
 
 		// Listeners
 		bOK.addActionListener((e) -> {
-			this.dispose();
-			customLevel = false;
-			if (jbLevelType.getSelectedIndex() == 1) {
-				customLevel = true;
+			try {
+				if(DatabaseController.getInstance().userExists(txtName.getText())) {
+					if(DatabaseController.getInstance().checkUserByUsernameAndPassword(txtName.getText(), String.valueOf(pfPassword.getPassword()))) {
+						startGame();
+					}
+					//TODO crear pantalla fallo de verificacion
+				}else {
+					startGame();
+				}
+			} catch (DBException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			SwingUtilities.invokeLater(() -> new SpaceInvaders(new Player(txtName.getText(), String.valueOf(pfPassword.getPassword()), jbCountries.getSelectedItem().toString()), customLevel, menu));
+			
 		});
 		bCancel.addActionListener((e) -> {
 			this.dispose();
@@ -147,5 +158,13 @@ public class InfoWindow extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-
+	public void startGame() {
+		this.dispose();
+		customLevel = false;
+		if (jbLevelType.getSelectedIndex() == 1) {
+			customLevel = true;
+		}
+		Player player= new Player(txtName.getText(), String.valueOf(pfPassword.getPassword()), jbCountries.getSelectedItem().toString());
+		SwingUtilities.invokeLater(() -> new SpaceInvaders(player, new Game(player,0,0,null,1), customLevel, menu));
+	}
 }

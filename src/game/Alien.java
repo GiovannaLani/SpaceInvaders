@@ -46,6 +46,19 @@ public abstract class Alien extends GameObject {
 	public static void setChangeDirection(boolean changeDirection) {
 		Alien.changeDirection = changeDirection;
 	}
+	
+	public static void setDirection(int direction) {
+		Alien.direction = direction;
+		
+	}
+	
+	public static int getDirection() {
+		return direction;
+	}
+
+	public static long getTimeMaxDying() {
+		return timeMaxDying;
+	}
 
 	@Override
 	public void update(long millis) {
@@ -99,4 +112,5 @@ public abstract class Alien extends GameObject {
 	public boolean isDead() {
 		return super.isDead() && timeAfterDying >= timeMaxDying;
 	}
+
 }

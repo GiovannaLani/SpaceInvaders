@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import domain.Game;
 import domain.Player;
 import gui.Menu.Menu;
 
@@ -39,10 +40,12 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	private SpaceInvaders window;
 	private int timeCounter = 0;
 	private final Object pauseLock = new Object();
+	private Game game;
 
-	public GamePanel(Player player , boolean customLevel, Menu menu , SpaceInvaders window) {
+	public GamePanel(Player player, Game game, boolean customLevel, Menu menu , SpaceInvaders window) {
 		this.customLevel=customLevel;
 		this.window=window;
+		this.game = game;
 		setBackground(Color.black);
 		setAlignmentY(Component.CENTER_ALIGNMENT);
 
@@ -92,12 +95,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 					}
 				}else {
 					synchronized (pauseLock) {
-						while(gamePaused && !Thread.currentThread().isInterrupted()) {
-							System.out.println("Thread Paused");
-
-							pauseLock.wait();
-
-						}
+						while(gamePaused && !Thread.currentThread().isInterrupted()) { }
 					}
 				}
 			}
@@ -224,6 +222,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		return timeCounter;
 	}
 
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
 	public void restartGame(int points, int lives) {
 		synchronized (gameLock) {
 			System.out.println("Restarting Game!");
@@ -245,6 +251,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			pausePanel.setVisible(false);
 			this.requestFocus();
 			world = new World(this, customLevel, points, lives);
+			if(points > 0) {
+				game.setLevel(game.getLevel() + 1);
+			}else {
+				game.setLevel(1);
+			}
 			resumeGame();
 			startGameThread();
 
