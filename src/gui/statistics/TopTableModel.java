@@ -11,7 +11,7 @@ public class TopTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
 	private List<Game> data;
-	private String[] columnName = { "Nombre", "Puntuación", "Fecha", "Tiempo", "Pais" };
+	private String[] columnName = { "Nombre", "Puntuación", "Fecha", "Tiempo", "Nivel", "Pais" };
 
 	public TopTableModel(List<Game> data) {
 		this.data = data;
@@ -39,6 +39,8 @@ public class TopTableModel extends AbstractTableModel {
 		case 3:
 			return data.get(rowIndex).getTime();
 		case 4:
+			return data.get(rowIndex).getLevel();
+		case 5:
 			return data.get(rowIndex).getPlayer().getCountry();
 		default:
 			return null;

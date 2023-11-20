@@ -48,8 +48,8 @@ public class World {
 			logger.severe( "No se pudo leer el fichero de configuración del logger");
 		}
 		logger.info("Se ha creado un nuevo Mundo");
-		
-		
+
+
 		this.p = p;
 		lGameObject = new ArrayList<>();
 		lAlien = new ArrayList<>();
@@ -169,31 +169,45 @@ public class World {
 	public void update(long millis) {
 		if(p.getTimeCounter() > 0 &&!(alienShipExists()) && p.getTimeCounter() % elapsedTimeToAlienShipCreation == 0  ) {
 			AlienShip alienShip = new AlienShip( 630, 90, 7*3, 16*3, p);
-			lAlien.add(alienShip);
-			lGameObject.add(alienShip);
+			synchronized (lAlien) {
+				lAlien.add(alienShip);
+			}
+			synchronized (lGameObject) {
+				lGameObject.add(alienShip);
+			}
 		}
 		List<GameObject> deadObjects = new ArrayList<GameObject>();
 		List<Alien> aliensRemove = new ArrayList<Alien>();
+		List<Shield> shieldRemove = new ArrayList<Shield>();
 		updateLives();
-		Iterator<GameObject> iter = lGameObject.iterator();
-		while(iter.hasNext()) {
-			GameObject go = iter.next();
-			go.update(millis);
-			if (go.isDead() && !(go instanceof PlayerShip)) {
-				deadObjects.add(go);
-				if (go instanceof Alien) {
-					if(!(go instanceof AlienShip) || ((AlienShip)go).isKilled()) {
-						player.setPoints(player.getPoints() + ((Alien) go).getPoints());
+		synchronized (lGameObject) {
+			Iterator<GameObject> iter = lGameObject.iterator();
+			while(iter.hasNext()) {
+				GameObject go = iter.next();
+				go.update(millis);
+				if (go.isDead() && !(go instanceof PlayerShip)) {
+					deadObjects.add(go);
+					if (go instanceof Alien) {
+						if(!(go instanceof AlienShip) || ((AlienShip)go).isKilled()) {
+							player.setPoints(player.getPoints() + ((Alien) go).getPoints());
+						}
+						aliensRemove.add((Alien)go);
 					}
-					aliensRemove.add((Alien)go);
-				}
-				if (go instanceof Shield) {
-					lShield.remove(go);
+					if (go instanceof Shield) {
+						shieldRemove.add((Shield) go);
+					}
 				}
 			}
 		}
 		if(!lAlien.isEmpty() && !aliensRemove.isEmpty()) {
-			lAlien.removeAll(aliensRemove);
+			synchronized (lAlien) {
+				lAlien.removeAll(aliensRemove);
+			}
+		}
+		if(!lShield.isEmpty() && !shieldRemove.isEmpty()) {
+			synchronized (lShield) {
+				lShield.removeAll(shieldRemove);
+			}
 		}
 		alienSpeed = -(2f / 11f) * lAlien.size() + maxSpeed;
 		Alien.setSpeed(alienSpeed);
@@ -202,21 +216,29 @@ public class World {
 		shootAlien();
 		if(alienShoot != null) {
 			if (alienShoot.collidesDownBorder()) {
+				synchronized (lGameObject) {
+		             if (!lGameObject.isEmpty()) {
+		                lGameObject.remove(alienShoot);
+		             }
+		          }
 				alienShoot = null;
-				lGameObject.remove(alienShoot);
 			}
 		}
 		if (playerShoot != null) {
 			if (playerShoot.collidesTopBorder()) {
+				synchronized (lGameObject) {
+		             if (!lGameObject.isEmpty()) {
+		                lGameObject.remove(playerShoot);
+		             }
+		          }
 				playerShoot = null;
-				if(!lGameObject.isEmpty()) {
-					lGameObject.remove(playerShoot);
-				}
 			}
 		}
-		if(!lGameObject.isEmpty() && !deadObjects.isEmpty()) {
-			lGameObject.removeAll(deadObjects);
-		}
+		synchronized (lGameObject) {
+		       if (!lGameObject.isEmpty() && !deadObjects.isEmpty()) {
+		          lGameObject.removeAll(deadObjects);
+		       }
+		    }
 		if(lAlien.isEmpty()) {
 			p.shouldRestart = true;
 		}
