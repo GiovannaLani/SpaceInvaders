@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class SettingsController {
 	public static String DATABASE_NAME;
-	public static String CONFIG_FILE_NAME = "res/data/config.txt";
+	public static String CONFIG_FILE_NAME = "res/data/config.properties";
 	
 	public static void loadSettingsFile() {
 		try {

@@ -1,6 +1,7 @@
 package gui.statistics;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import domain.Game;
 import javax.swing.table.AbstractTableModel;
 
@@ -8,10 +9,10 @@ public class TopCountryModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
 
-	private ArrayList<Game> data;
-	private String[] columnName = { "Nombre", "Puntuación", "Fecha", "Tiempo" };
+	private List<Game> data;
+	private String[] columnName = { "Nombre", "Puntuación", "Fecha", "Tiempo", "Nivel" };
 
-	public TopCountryModel(ArrayList<Game> data) {
+	public TopCountryModel(List<Game> data) {
 		this.data = data;
 	}
 
@@ -36,6 +37,8 @@ public class TopCountryModel extends AbstractTableModel {
 			return data.get(rowIndex).getDate();
 		case 3:
 			return data.get(rowIndex).getTime();
+		case 4:
+			return data.get(rowIndex).getLevel();
 		default:
 			return null;
 		}
@@ -44,6 +47,10 @@ public class TopCountryModel extends AbstractTableModel {
 	@Override
 	public String getColumnName(int column) {
 		return columnName[column];
+	}
+
+	public void setData(List<Game> data) {
+		this.data = data;
 	}
 
 }

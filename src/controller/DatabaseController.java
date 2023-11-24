@@ -37,6 +37,7 @@ public class DatabaseController {
 	private Connection connect() {
 		String url = "jdbc:sqlite:" + SettingsController.DATABASE_NAME;
 		Connection conn = null;
+		System.out.println(url);
 		try {
 			try {
 				Class.forName("org.sqlite.JDBC");
@@ -134,5 +135,78 @@ public class DatabaseController {
 		}
 		return lGame;
 	}
+	
+	public List<Game> selectTop10Country(String country) throws DBException{
+		String sql = "SELECT * FROM game WHERE country = ? ORDER BY game_score DESC, game_level DESC, game_duration ASC LIMIT 10";
+		List<Game> lGame = new ArrayList<Game>();
+		try(Connection conn = this.connect(); 
+				PreparedStatement prepstmt = conn.prepareStatement(sql);){
+			prepstmt.setString(1, country);
+			ResultSet rs = prepstmt.executeQuery();
+			while(rs.next()) {
+				Game g = new Game(new Player(
+						rs.getString("username"),
+						rs.getString("password"),
+						rs.getString("country")),
+						rs.getInt("game_score"),
+						rs.getLong("game_duration"),
+						LocalDate.parse(rs.getString("date")),
+						rs.getInt("game_level"));
 
+				//TODO add duration
+				lGame.add(g);
+			}
+			rs.close();
+			
+		}catch (SQLException e) {
+			throw new DBException("Fallo en la obtencion del Top 10" , e);
+		}
+		return lGame;
+	}
+	
+	public List<Player> loadPlayer() throws DBException {
+		String sql = "SELECT username, MAX(password) AS password, MAX(country) AS country FROM game GROUP BY username";
+		List<Player> lPlayers = new ArrayList<Player>();
+		try(Connection conn = this.connect(); 
+				PreparedStatement prepstmt = conn.prepareStatement(sql);
+				ResultSet rs = prepstmt.executeQuery();){
+			while(rs.next()) {
+				Player p = new Player(
+						rs.getString("username"),
+						rs.getString("password"),
+						rs.getString("country"));
+				lPlayers.add(p);
+			}
+		}catch (SQLException e) {
+			throw new DBException("Fallo en la obtencion del Top 10" , e);
+		}
+		return lPlayers;
+	}
+	public List<Game> selectPlayerTop(String username) throws DBException{
+		String sql = "SELECT * FROM game WHERE username = ?";
+		List<Game> lGame = new ArrayList<Game>();
+		try(Connection conn = this.connect(); 
+				PreparedStatement prepstmt = conn.prepareStatement(sql);){
+			prepstmt.setString(1, username);
+			ResultSet rs = prepstmt.executeQuery();
+			while(rs.next()) {
+				Game g = new Game(new Player(
+						rs.getString("username"),
+						rs.getString("password"),
+						rs.getString("country")),
+						rs.getInt("game_score"),
+						rs.getLong("game_duration"),
+						LocalDate.parse(rs.getString("date")),
+						rs.getInt("game_level"));
+
+				//TODO add duration
+				lGame.add(g);
+			}
+			rs.close();
+			
+		}catch (SQLException e) {
+			throw new DBException("Fallo en la obtencion del Top 10" , e);
+		}
+		return lGame;
+	}
 }

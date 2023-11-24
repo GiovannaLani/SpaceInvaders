@@ -1,6 +1,7 @@
 package gui.statistics;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -10,10 +11,10 @@ public class PlayerTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
 
-	private ArrayList<Game> data;
+	private List<Game> data;
 	private String[] columnName = { "Puntuación", "Fecha", "Tiempo", "Nivel" };
 
-	public PlayerTableModel(ArrayList<Game> data) {
+	public PlayerTableModel(List<Game> data) {
 		this.data = data;
 	}
 
@@ -47,5 +48,10 @@ public class PlayerTableModel extends AbstractTableModel {
 	public String getColumnName(int column) {
 		return columnName[column];
 	}
+
+	public void setData(List<Game> data) {
+		this.data = data;
+	}
+	
 
 }
