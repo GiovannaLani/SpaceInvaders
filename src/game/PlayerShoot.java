@@ -8,7 +8,7 @@ public class PlayerShoot extends Shoot {
 	public PlayerShoot(double x, double y, int height, int width, GamePanel p) {
 		super(x, y, height, width, p);
 		lives=1;
-		speed=300;
+		speed=500;
 		hasCollided = false;
 	}
 

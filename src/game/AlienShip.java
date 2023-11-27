@@ -10,17 +10,21 @@ import javax.imageio.ImageIO;
 public class AlienShip extends Alien {
 	private boolean isKilled;
 	private float alienShipSpeed;
+	private int alienShipDirection;
 	private Random random;
 
-	public AlienShip(double x, double y, int height, int width, GamePanel p) {
+	public AlienShip(double x, double y, int height, int width, GamePanel p, int alienShipDirection) {
 		super(x, y, height, width, p);
 		try {
 			alienImg1 = ImageIO.read(getClass().getResourceAsStream("/images/alien_ship.png"));
 			killImg = ImageIO.read(getClass().getResourceAsStream("/images/alien_kill.png"));
 			setKilled(false);
 			random = new Random();
+			this.alienShipDirection = alienShipDirection;
 			setPoints(random.nextInt((300-50) + 1) + 50);
 			setAlienShipSpeed(200);
+			System.out.println(x);
+			System.out.println(alienShipDirection);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,8 +48,14 @@ public class AlienShip extends Alien {
 
 	@Override
 	public boolean collidesBorder() {
-		if (x < -width/2) {
-			return true;
+		if(alienShipDirection == -1) {
+			if (x < -width/2) {
+				return true;
+			}
+		}else {
+			if (x > 640 + width/2) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -53,8 +63,7 @@ public class AlienShip extends Alien {
 	@Override
 	public void update(long millis) {
 		// Movimiento
-		x -= alienShipSpeed * millis * 0.001;
-		
+		x += alienShipSpeed * alienShipDirection * millis * 0.001;
 		// Animación
 		if (lives <= 0) {
 			setAlienShipSpeed(0);
@@ -77,4 +86,13 @@ public class AlienShip extends Alien {
 	public float getAlienShipSpeed() {
 		return alienShipSpeed;
 	}
+
+	public int getAlienShipDirection() {
+		return alienShipDirection;
+	}
+
+	public void setAlienShipDirection(int alienShipDirection) {
+		this.alienShipDirection = alienShipDirection;
+	}
+	
 }

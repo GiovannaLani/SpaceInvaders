@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JLayeredPane;
@@ -48,13 +49,12 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		this.game = game;
 		setBackground(Color.black);
 		setAlignmentY(Component.CENTER_ALIGNMENT);
-
 		setPreferredSize(new Dimension(640, 700));
 		setFocusable(true);
 		addKeyListener(this);
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(640,700));
-		world= new World(this, customLevel,0,3);
+		world= new World(this, customLevel,0,3,null);
 		gamePaused = false;
 		pausePanel = new PausePanel(this, menu);
 		pausePanel.setBounds(160,175,(int)pausePanel.getPreferredSize().getWidth(),(int)pausePanel.getPreferredSize().getHeight());
@@ -85,11 +85,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 					timeInc= System.currentTimeMillis();
 					update();
 					repaint();
-
 					timeEnd=System.currentTimeMillis();
 					millisEnd=millis-(timeEnd-timeInc);
 					timeCounter = (int) ((timeEnd-startTime)/1000);
-
 					if(millisEnd>0) {
 						Thread.sleep(millisEnd);
 					}
@@ -114,7 +112,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 				if (Thread.currentThread().isInterrupted()) {
 					return; // No intentar reiniciar si el hilo actual está interrumpido
 				}
-				restartGame(world.getPlayer().getPoints(), world.getPlayer().getLives());
+				restartGame(world.getPlayer().getPoints(), world.getlShield());
 			}
 		}
 
@@ -230,7 +228,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		this.game = game;
 	}
 
-	public void restartGame(int points, int lives) {
+	public void restartGame(int points, List<Shield> lShield) {
 		synchronized (gameLock) {
 			System.out.println("Restarting Game!");
 			if (gameThread != null) {
@@ -247,10 +245,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 				gameThread = null;
 			}
 			shouldRestart = false;
-
 			pausePanel.setVisible(false);
 			this.requestFocus();
-			world = new World(this, customLevel, points, lives);
+			world = new World(this, customLevel, points, 3, lShield);
 			if(points > 0) {
 				game.setLevel(game.getLevel() + 1);
 			}else {

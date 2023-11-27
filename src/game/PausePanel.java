@@ -60,7 +60,7 @@ public class PausePanel extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				p.restartGame(0,3);
+				p.restartGame(0,null);
 				logger.info("Se ha pulsado el botón Reiniciar");
 			}
 		});

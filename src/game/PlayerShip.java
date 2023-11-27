@@ -12,7 +12,7 @@ public class PlayerShip extends GameObject {
 	
 	private int points;
 	private BufferedImage imgPlayer, imgPlayerKill;
-	private int speed_x = 150;
+	private int speed_x = 300;
 
 	public PlayerShip(double x, double y, int height, int width, GamePanel p) {
 		super(x, y, height, width, p);

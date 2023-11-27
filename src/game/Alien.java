@@ -10,17 +10,19 @@ public abstract class Alien extends GameObject {
 	protected static boolean changeDirection;
 	protected static long timeMaxDying = 200;
 	protected int points;
-	
+	protected boolean collidesDownLimit = false;
 
 	protected BufferedImage alienImg1, alienImg2, killImg;
 	protected int spriteCounter = 0;
 	protected int spriteNumber = 1;
 	protected long timeAfterDying = 0;
+	
+	private double alienLimitY = 535;
 
 	public Alien(double x, double y, int height, int width, GamePanel p) {
 		super(x, y, height, width, p);
 		lives = 1;
-		speed = 40;
+		speed = 20;
 	}
 	
 	public int getPoints() {
@@ -60,9 +62,18 @@ public abstract class Alien extends GameObject {
 		return timeMaxDying;
 	}
 
+	public boolean isCollidesDownLimit() {
+		return collidesDownLimit;
+	}
+
+	public void setCollidesDownLimit(boolean collidesDownLimit) {
+		this.collidesDownLimit = collidesDownLimit;
+	}
+
 	@Override
 	public void update(long millis) {
 		// Movimiento
+
 		x += speed * direction * millis * 0.001;
 		// Animación
 		spriteCounter++;
@@ -104,6 +115,9 @@ public abstract class Alien extends GameObject {
 			if (direction < 0) {
 				return true;
 			}
+		}
+		if (y >= alienLimitY) {
+			collidesDownLimit = true;
 		}
 		return false;
 	}

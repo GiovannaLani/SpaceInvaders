@@ -29,16 +29,16 @@ public class World {
 	private List<GameObject> lGameObject;
 	private List<Alien> lAlien;
 	private List<Shield> lShield;
-	private float alienSpeed = 40;
-	private float maxSpeed = 50;
-	private int elapsedTimeToAlienShipCreation = 10;
+	private float alienSpeed = 20;
+	private float maxSpeed = 30;
+	private int elapsedTimeToAlienShipCreation = 10; 
 
 	private PlayerShoot playerShoot;
 	private AlienShoot alienShoot;
 	private PlayerShip player;
 	private Shield shield;
 
-	public World(GamePanel p, boolean customized, int points, int lives) {
+	public World(GamePanel p, boolean customized, int points, int lives, List<Shield> lShield) {
 		super();
 
 		//logger
@@ -53,17 +53,22 @@ public class World {
 		this.p = p;
 		lGameObject = new ArrayList<>();
 		lAlien = new ArrayList<>();
-		lShield = new ArrayList<>();
+		this.lShield = lShield;
+		if(this.lShield == null) {
+			this.lShield = new ArrayList<>();
+			//creacion escudos
+			for(int i=0; i<4;i++) {
+				createShield(60 + 150*i);
+			}
+		}else {
+			lGameObject.addAll(lShield);
+		}
 		alienShoot = null;
 		playerShoot = null;
 		player = new PlayerShip(320, 590, 8 * 4, 13 * 4, p);
 		player.setPoints(points);
 		player.setLives(lives);
 		lGameObject.add(player);
-		//creacion escudos
-		for(int i=0; i<4;i++) {
-			createShield(60 + 150*i);
-		}
 
 		String[][] lEnemies = loadLevel("res/data/level.dat");
 		if (customized && lEnemies != null) {
@@ -114,6 +119,14 @@ public class World {
 
 	public Shield getShield() {
 		return shield;
+	}
+	
+	public List<Shield> getlShield() {
+		return lShield;
+	}
+
+	public void setlShield(List<Shield> lShield) {
+		this.lShield = lShield;
 	}
 
 	public void setShield(Shield shield) {
@@ -168,7 +181,9 @@ public class World {
 
 	public void update(long millis) {
 		if(p.getTimeCounter() > 0 &&!(alienShipExists()) && p.getTimeCounter() % elapsedTimeToAlienShipCreation == 0  ) {
-			AlienShip alienShip = new AlienShip( 630, 90, 7*3, 16*3, p);
+			int alienShipDirection = random.nextBoolean()?1:-1;
+			int x = alienShipDirection == 1 ? 10 : 630;
+			AlienShip alienShip = new AlienShip( x, 90, 7*3, 16*3, p, alienShipDirection);
 			synchronized (lAlien) {
 				lAlien.add(alienShip);
 			}
@@ -241,6 +256,9 @@ public class World {
 		    }
 		if(lAlien.isEmpty()) {
 			p.shouldRestart = true;
+		}
+		if(isAlienInLimit()) {
+			player.setLives(0);
 		}
 		if(player.isDead()) {
 			p.getGame().setScore(player.getPoints());
@@ -350,9 +368,17 @@ public class World {
 			}
 			if(i==0 || i==3) {
 				lShield.add(new Shield(posX + i * 18, 490+18*2, 6*3, 6*3, p, ShieldType.NORMAL));
-
 			}
 
 		}lGameObject.addAll(lShield);
+	}
+	
+	public boolean isAlienInLimit() {
+		for(Alien alien: lAlien) {
+			if(alien.isCollidesDownLimit()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

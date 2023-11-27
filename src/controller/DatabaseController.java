@@ -37,7 +37,6 @@ public class DatabaseController {
 	private Connection connect() {
 		String url = "jdbc:sqlite:" + SettingsController.DATABASE_NAME;
 		Connection conn = null;
-		System.out.println(url);
 		try {
 			try {
 				Class.forName("org.sqlite.JDBC");

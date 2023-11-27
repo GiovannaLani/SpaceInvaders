@@ -84,7 +84,6 @@ public class Shield extends GameObject {
 
 	@Override
 	public void update(long millis) {
-	
 		
 	}
 }
