@@ -23,8 +23,6 @@ public class AlienShip extends Alien {
 			this.alienShipDirection = alienShipDirection;
 			setPoints(random.nextInt((300-50) + 1) + 50);
 			setAlienShipSpeed(200);
-			System.out.println(x);
-			System.out.println(alienShipDirection);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
