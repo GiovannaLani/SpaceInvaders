@@ -54,7 +54,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		addKeyListener(this);
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(640,700));
-		world= new World(this, customLevel,0,3,null);
+		world = new World(this, customLevel,0,3,null);
 		gamePaused = false;
 		pausePanel = new PausePanel(this, menu);
 		pausePanel.setBounds(160,175,(int)pausePanel.getPreferredSize().getWidth(),(int)pausePanel.getPreferredSize().getHeight());
@@ -230,6 +230,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 	public void restartGame(int points, List<Shield> lShield) {
 		synchronized (gameLock) {
+			float alienSpeed;
 			System.out.println("Restarting Game!");
 			if (gameThread != null) {
 				gameThread.interrupt();
@@ -247,12 +248,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			shouldRestart = false;
 			pausePanel.setVisible(false);
 			this.requestFocus();
-			world = new World(this, customLevel, points, 3, lShield);
 			if(points > 0) {
 				game.setLevel(game.getLevel() + 1);
+				alienSpeed = Alien.getSpeed();
 			}else {
 				game.setLevel(1);
+				alienSpeed = 20;
 			}
+			world = new World(this, customLevel, points, 3, lShield);
 			resumeGame();
 			startGameThread();
 

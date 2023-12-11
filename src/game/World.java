@@ -62,6 +62,8 @@ public class World {
 			}
 		}else {
 			lGameObject.addAll(lShield);
+			alienSpeed = Alien.getSpeed();
+			maxSpeed += 10;
 		}
 		alienShoot = null;
 		playerShoot = null;
@@ -131,6 +133,14 @@ public class World {
 
 	public void setShield(Shield shield) {
 		this.shield = shield;
+	}
+
+	public float getAlienSpeed() {
+		return alienSpeed;
+	}
+
+	public void setAlienSpeed(float alienSpeed) {
+		this.alienSpeed = alienSpeed;
 	}
 
 	private void updateLives() {
@@ -226,6 +236,7 @@ public class World {
 		}
 		alienSpeed = -(2f / 11f) * lAlien.size() + maxSpeed;
 		Alien.setSpeed(alienSpeed);
+		System.out.println(alienSpeed);
 
 		changeAlienDirection();
 		shootAlien();
