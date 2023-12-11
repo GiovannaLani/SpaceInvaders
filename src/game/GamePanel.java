@@ -268,8 +268,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	}
 
 	public void resumeGame() {
+		gamePaused = false;
 		synchronized (pauseLock) {
-			gamePaused = false;
 			pauseLock.notifyAll();
 		}
 	}
