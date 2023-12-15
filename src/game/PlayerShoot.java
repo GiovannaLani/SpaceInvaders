@@ -4,18 +4,18 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class PlayerShoot extends Shoot {
-
+	private static int playerShootSpeed;
 	public PlayerShoot(double x, double y, int height, int width, GamePanel p) {
 		super(x, y, height, width, p);
 		lives=1;
-		speed=500;
+		playerShootSpeed=500;
 		hasCollided = false;
 	}
 
 	@Override
 	public void update(long millis) {
 		// TODO Auto-generated method stub
-		y-=speed*millis*0.001;
+		y-= playerShootSpeed*millis*0.001;
 	}
 
 	@Override
@@ -30,8 +30,18 @@ public class PlayerShoot extends Shoot {
 			return false;
 		}
 		return true;
-		
-		
+			
 	}
+
+	public static int getPlayerShootSpeed() {
+		return playerShootSpeed;
+	}
+
+	public static void setPlayerShootSpeed(int playerShootSpeed) {
+		PlayerShoot.playerShootSpeed = playerShootSpeed;
+	}
+	
+
+	
 
 }
