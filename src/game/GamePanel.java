@@ -36,12 +36,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	private World world;
 	private volatile boolean gamePaused;
 	private PausePanel pausePanel;
+	private GameOver gameOverPanel;
 	public JLayeredPane layeredPane;
 	private boolean customLevel;
 	private SpaceInvaders window;
 	private int timeCounter = 0;
 	private final Object pauseLock = new Object();
 	private Game game;
+
 
 	public GamePanel(Player player, Game game, boolean customLevel, Menu menu , SpaceInvaders window) {
 		this.customLevel=customLevel;
@@ -59,8 +61,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		pausePanel = new PausePanel(this, menu);
 		pausePanel.setBounds(160,175,(int)pausePanel.getPreferredSize().getWidth(),(int)pausePanel.getPreferredSize().getHeight());
 		pausePanel.setVisible(false);
+		
+		gameOverPanel = new GameOver(this, menu);
+		gameOverPanel.setBounds(120,175,(int)gameOverPanel.getPreferredSize().getWidth(),(int)gameOverPanel.getPreferredSize().getHeight());
+		gameOverPanel.setVisible(false);
+		
 		layeredPane.add(this,JLayeredPane.DEFAULT_LAYER);
 		layeredPane.add(pausePanel,JLayeredPane.POPUP_LAYER);
+		layeredPane.add(gameOverPanel,JLayeredPane.POPUP_LAYER);
 		this.setBounds(0,0,640,700);
 	}
 
@@ -97,6 +105,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 					}
 				}
 			}
+			gameOverPanel.setVisible(true);
 		} catch (InterruptedException e) {
 
 			System.out.println("Thread Interrupted");
@@ -228,6 +237,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		this.game = game;
 	}
 
+
 	public void restartGame(int points, List<Shield> lShield) {
 		synchronized (gameLock) {
 			float alienSpeed;
@@ -247,6 +257,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			}
 			shouldRestart = false;
 			pausePanel.setVisible(false);
+			gameOverPanel.setVisible(false);
 			this.requestFocus();
 			if(points > 0) {
 				game.setLevel(game.getLevel() + 1);

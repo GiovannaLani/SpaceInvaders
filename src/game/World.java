@@ -142,7 +142,8 @@ public class World {
 	public void setAlienSpeed(float alienSpeed) {
 		this.alienSpeed = alienSpeed;
 	}
-
+	
+	
 	private void updateLives() {
 		if (alienShoot != null && alienShoot.collidesWith(player) && !alienShoot.hasCollided) {
 			alienShoot.setLives(alienShoot.getLives() - 1);
@@ -236,7 +237,6 @@ public class World {
 		}
 		alienSpeed = -(2f / 11f) * lAlien.size() + maxSpeed;
 		Alien.setSpeed(alienSpeed);
-		System.out.println(alienSpeed);
 
 		changeAlienDirection();
 		shootAlien();
