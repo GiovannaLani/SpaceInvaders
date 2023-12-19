@@ -29,7 +29,7 @@ public class GameOver extends JPanel {
 	
 	
 	public GameOver(GamePanel p, Menu menu) {
-		setPreferredSize(new Dimension(400, 350));
+		setPreferredSize(new Dimension(400, 200));
 		setBackground(Color.BLACK);
 		ButtonPixel bRestart = new ButtonPixel("REINICIAR",10);
 		ButtonPixel bMenu = new ButtonPixel("MENU",10);
@@ -38,7 +38,8 @@ public class GameOver extends JPanel {
 		
 		// Border
 		Border emptyBorder = BorderFactory.createEmptyBorder(20, 30, 20, 30);
-		
+		Border lineBorder = BorderFactory.createLineBorder(Color.GREEN, 4);
+		setBorder(lineBorder);
 		JPanel gameOv = new JPanel();
 		gameOv.setLayout(new BoxLayout(gameOv, BoxLayout.Y_AXIS));
 		gameOv.setBackground(Color.BLACK);

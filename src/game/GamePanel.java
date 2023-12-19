@@ -38,14 +38,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	private PausePanel pausePanel;
 	private GameOver gameOverPanel;
 	public JLayeredPane layeredPane;
-	private boolean customLevel;
+	private LevelType customLevel;
 	private SpaceInvaders window;
 	private int timeCounter = 0;
 	private final Object pauseLock = new Object();
 	private Game game;
 
 
-	public GamePanel(Player player, Game game, boolean customLevel, Menu menu , SpaceInvaders window) {
+	public GamePanel(Player player, Game game, LevelType customLevel, Menu menu , SpaceInvaders window) {
 		this.customLevel=customLevel;
 		this.window=window;
 		this.game = game;
@@ -105,7 +105,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 					}
 				}
 			}
-			gameOverPanel.setVisible(true);
+			if(world.getPlayer().isDead()) {
+				gameOverPanel.setVisible(true);
+			}
 		} catch (InterruptedException e) {
 
 			System.out.println("Thread Interrupted");
