@@ -11,7 +11,7 @@ public class SpaceInvaders extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 
-	public SpaceInvaders(Player player, Game game,  boolean customLevel, Menu menu) {
+	public SpaceInvaders(Player player, Game game,  LevelType customLevel, Menu menu) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		GamePanel gamePanel= new GamePanel(player, game, customLevel, menu, this);

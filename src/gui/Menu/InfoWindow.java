@@ -30,6 +30,7 @@ import controller.DBException;
 import controller.DatabaseController;
 import domain.Game;
 import domain.Player;
+import game.LevelType;
 import game.SpaceInvaders;
 import gui.customComponents.ButtonPixel;
 import gui.customComponents.ComboBoxPixel;
@@ -49,7 +50,7 @@ public class InfoWindow extends JFrame {
 	private TextFieldPixel txtName;
 	private ComboBoxPixel jbCountries;
 	private ComboBoxPixel jbLevelType;
-	private boolean customLevel;
+	private LevelType customLevel;
 	private Menu menu;
 
 	private static Logger logger = Logger.getLogger(InfoWindow.class.getName());
@@ -120,7 +121,7 @@ public class InfoWindow extends JFrame {
 		// combobox
 		jbCountries.setAlignmentX(Component.LEFT_ALIGNMENT);
 		jbCountries.setMaximumSize(jbCountries.getPreferredSize());
-		jbLevelType = new ComboBoxPixel(new String[] { "Normal", "Personalizado" }, 10);
+		jbLevelType = new ComboBoxPixel(new String[] { "Normal", "Personalizado", "Drops" }, 10);
 		jbLevelType.setAlignmentX(Component.LEFT_ALIGNMENT);
 		jbLevelType.setMaximumSize(jbCountries.getPreferredSize());
 		// botones
@@ -175,9 +176,12 @@ public class InfoWindow extends JFrame {
 		setVisible(true);
 	}
 	public void startGame() {
-		customLevel = false;
-		if (jbLevelType.getSelectedIndex() == 1) {
-			customLevel = true;
+		if (jbLevelType.getSelectedIndex() == 0) {
+			customLevel = LevelType.NORMAL;
+		}else if(jbLevelType.getSelectedIndex() == 0) {
+			customLevel = LevelType.CUSTOM;
+		}else {
+			customLevel = LevelType.DROPS;
 		}
 		if (txtName.getText().isEmpty() || pfPassword.getPassword().length == 0) {
 			JOptionPane.showMessageDialog(null,"Hay campos sin rellenar");

@@ -31,10 +31,11 @@ public class World {
 	private List<Shield> lShield;
 	private List<Drop> lDrop;
 	private float alienSpeed = 20;
-	private float maxSpeed = 30;
+	private float maxSpeed = 35;
 	private int elapsedTimeToAlienShipCreation = 10;
 	private int contPlayerShoot = 0;
 	private int maxPlayerShoot = 1;
+	private LevelType customized;
 
 
 	private List<PlayerShoot> playerShoot;
@@ -42,7 +43,7 @@ public class World {
 	private PlayerShip player;
 	private Shield shield;
 
-	public World(GamePanel p, boolean customized, int points, int lives, List<Shield> lShield) {
+	public World(GamePanel p, LevelType customized, int points, int lives, List<Shield> lShield) {
 		super();
 
 		//logger
@@ -60,6 +61,7 @@ public class World {
 		lDrop = new ArrayList<>();
 		playerShoot = new ArrayList<>();
 		this.lShield = lShield;
+		this.customized = customized;
 		if(this.lShield == null) {
 			this.lShield = new ArrayList<>();
 			//creacion escudos
@@ -69,7 +71,7 @@ public class World {
 		}else {
 			lGameObject.addAll(lShield);
 			alienSpeed = Alien.getSpeed();
-			maxSpeed += 10;
+			maxSpeed += 15;
 		}
 		alienShoot = null;
 		player = new PlayerShip(320, 590, 8 * 4, 13 * 4, p);
@@ -78,7 +80,7 @@ public class World {
 		lGameObject.add(player);
 
 		String[][] lEnemies = loadLevel("res/data/level.dat");
-		if (customized && lEnemies != null) {
+		if (customized == LevelType.CUSTOM && lEnemies != null) {
 			for (int i = 0; i < lEnemies.length; i++) {
 				for (int j = 0; j < lEnemies[0].length; j++) {
 					String alienType = lEnemies[i][j];
@@ -152,10 +154,9 @@ public class World {
 	private void updateLives() {
 		if (alienShoot != null && alienShoot.collidesWith(player) && !alienShoot.hasCollided) {
 			alienShoot.setLives(alienShoot.getLives() - 1);
-			if (!((p.getTimeCounter() - Drop.PERSONAL_SHIELD)< 5) && (Drop.PERSONAL_SHIELD == 0) ) {
+			if (!((p.getTimeCounter() - Drop.PERSONAL_SHIELD)< 5) || (Drop.PERSONAL_SHIELD == 0) ) {
 				player.setLives(player.getLives() - 1);			
 			}
-			player.setLives(player.getLives() - 1);
 			alienShoot.hasCollided = true;
 			logger.fine("La vida de un escudo ha disminuido por el disparo de un alien");
 		}
@@ -214,6 +215,7 @@ public class World {
 	}
 
 	public void update(long millis) {
+		System.out.println(alienSpeed);
 		if (Drop.ALIEN_LINE == 1) {
 			List<Alien> lnewAlien = new ArrayList<>();
 			for (int i = 0; i < 11; i++) {
@@ -398,10 +400,12 @@ public class World {
 		}
 	}
 	public void drops(Alien alien) {
-		if(random.nextInt(101) < 15) {
-			Drop drop = new Drop(alien.getX() + alien.getWidth() / 2, alien.getY() + alien.getHeight(), 15 * 1,15 * 1, p);
-			lDrop.add(drop);
-			lGameObject.add(drop);
+		if(customized==LevelType.DROPS) {
+			if(random.nextInt(101) < 15) {
+				Drop drop = new Drop(alien.getX() + alien.getWidth() / 2, alien.getY() + alien.getHeight(), 15 * 1,15 * 1, p);
+				lDrop.add(drop);
+				lGameObject.add(drop);
+			}	
 		}
 
 	}
