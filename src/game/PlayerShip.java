@@ -75,4 +75,13 @@ public class PlayerShip extends GameObject {
 	public void setPoints(int points) {
 		this.points = points;
 	}
+
+	public int getSpeed_x() {
+		return speed_x;
+	}
+
+	public void setSpeed_x(int speed_x) {
+		this.speed_x = speed_x;
+	}
+	
 }

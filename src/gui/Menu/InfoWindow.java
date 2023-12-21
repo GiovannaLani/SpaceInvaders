@@ -178,7 +178,7 @@ public class InfoWindow extends JFrame {
 	public void startGame() {
 		if (jbLevelType.getSelectedIndex() == 0) {
 			customLevel = LevelType.NORMAL;
-		}else if(jbLevelType.getSelectedIndex() == 0) {
+		}else if(jbLevelType.getSelectedIndex() == 1) {
 			customLevel = LevelType.CUSTOM;
 		}else {
 			customLevel = LevelType.DROPS;

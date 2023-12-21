@@ -269,6 +269,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 				alienSpeed = 20;
 			}
 			world = new World(this, customLevel, points, 3, lShield);
+			Drop.restartDrops();
 			resumeGame();
 			startGameThread();
 

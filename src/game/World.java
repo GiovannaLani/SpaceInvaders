@@ -30,6 +30,7 @@ public class World {
 	private List<Alien> lAlien;
 	private List<Shield> lShield;
 	private List<Drop> lDrop;
+	private List<Bomb> lBomb;
 	private float alienSpeed = 20;
 	private float maxSpeed = 35;
 	private int elapsedTimeToAlienShipCreation = 10;
@@ -60,6 +61,7 @@ public class World {
 		lAlien = new ArrayList<>();
 		lDrop = new ArrayList<>();
 		playerShoot = new ArrayList<>();
+		lBomb = new ArrayList<>();
 		this.lShield = lShield;
 		this.customized = customized;
 		if(this.lShield == null) {
@@ -179,7 +181,7 @@ public class World {
 				logger.fine("La vida de un escudo ha disminuido por el disparo de un alien");
 			}
 			for(PlayerShoot pShoot : playerShoot) {
-				if (pShoot != null && pShoot.collidesWith(shield) && !pShoot.hasCollided) {
+				if (pShoot != null && shield.getLives()!= 0 && pShoot.collidesWith(shield) && !pShoot.hasCollided) {
 					pShoot.setLives(pShoot.getLives() - 1);
 					shield.setLives(shield.getLives() - 1);
 					pShoot.hasCollided = true;
@@ -190,13 +192,16 @@ public class World {
 		for (Alien alien : lAlien) {
 			synchronized (playerShoot) {
 				for(PlayerShoot pShoot : playerShoot) {
-					if (pShoot != null && pShoot.collidesWith(alien) && !pShoot.hasCollided) {
+					if (pShoot != null && pShoot.collidesWith(alien) && alien.getLives()!= 0 && !pShoot.hasCollided) {
 						pShoot.setLives(pShoot.getLives() - 1);
 						alien.setLives(alien.getLives() - 1);
 						pShoot.hasCollided = true;
-						////
 						drops(alien);
-						////
+						if ((p.getTimeCounter() - Drop.BOMB)< 10 && !(Drop.BOMB==0)) {
+							Bomb bomb = new Bomb(pShoot.getX(), pShoot.getY(), p);
+							lBomb.add(bomb);
+							lGameObject.add(bomb);
+						}
 						if(alien instanceof AlienShip) {
 							((AlienShip) alien).setKilled(true);
 							logger.fine("El jugador ha matado a un alien");
@@ -212,19 +217,41 @@ public class World {
 				drop.dropFunction();
 			}
 		}
+		for(Bomb bomb: lBomb) {
+			for (Alien alien:lAlien) {
+				if(alien.collidesWith(bomb)) {
+					alien.setLives(alien.getLives() - 1);
+				}
+			}
+		}
 	}
 
 	public void update(long millis) {
-		System.out.println(alienSpeed);
 		if (Drop.ALIEN_LINE == 1) {
 			List<Alien> lnewAlien = new ArrayList<>();
-			for (int i = 0; i < 11; i++) {
-				lAlien.add(new AlienCrab( 20 + i * 50 - ALIEN_CRAB_WIDTH / 2, ALIEN_ROW[0], ALIEN_HEIGHT,
+			double maxY=700;
+			
+			for (Alien alien : lAlien) {
+				if ( !(alien instanceof AlienShip) && alien.getY()< maxY) {
+					maxY = alien.getY();
+				}	
+			}
+		
+			for (int i = 0; i < 5; i++) {
+				lnewAlien.add(new AlienCrab( 200+ i * 50 - ALIEN_CRAB_WIDTH / 2, maxY - 30, ALIEN_HEIGHT,
 						ALIEN_CRAB_WIDTH, p));
 			}
+			lAlien.addAll(lnewAlien);
+			lGameObject.addAll(lnewAlien);
+			Drop.ALIEN_LINE = 0;
 		}
 		if ((p.getTimeCounter() - Drop.SHOOT_SPEED)< 5 && !(Drop.SHOOT_SPEED == 0)) {
 			PlayerShoot.setPlayerShootSpeed(1000);
+		}
+		if ((p.getTimeCounter() - Drop.PLAYER_SPEED)< 10 && !(Drop.PLAYER_SPEED == 0)) {
+			player.setSpeed_x(70);
+		}else {
+			player.setSpeed_x(300);
 		}
 		if(p.getTimeCounter() > 0 &&!(alienShipExists()) && p.getTimeCounter() % elapsedTimeToAlienShipCreation == 0  ) {
 			int alienShipDirection = random.nextBoolean()?1:-1;
@@ -242,6 +269,8 @@ public class World {
 		List<Shield> shieldRemove = new ArrayList<Shield>();
 		List<PlayerShoot> pShootRemove = new ArrayList<PlayerShoot>();
 		List<Drop> dropRemove = new ArrayList<>();
+		List<Bomb> bombRemove = new ArrayList<>();
+		
 		updateLives();
 		synchronized (lGameObject) {
 			Iterator<GameObject> iter = lGameObject.iterator();
@@ -261,6 +290,9 @@ public class World {
 					}
 					if (go instanceof Drop) {
 						dropRemove.add((Drop) go);
+					}
+					if (go instanceof Bomb) {
+						bombRemove.add((Bomb) go);
 					}
 					if (go instanceof PlayerShoot) {
 						pShootRemove.add((PlayerShoot) go);
@@ -282,6 +314,11 @@ public class World {
 		if(!lDrop.isEmpty() && !dropRemove.isEmpty()) {
 			synchronized (lDrop) {
 				lDrop.removeAll(dropRemove);
+			}
+		}
+		if(!lBomb.isEmpty() && !bombRemove.isEmpty()) {
+			synchronized (lBomb) {
+				lBomb.removeAll(bombRemove);
 			}
 		}
 		if(!playerShoot.isEmpty() && !pShootRemove.isEmpty()) {
@@ -389,7 +426,7 @@ public class World {
 			}
 			if(playerShoot.size()==0) {
 				for(int i = 0; i < maxPlayerShoot; i++) {
-					PlayerShoot pShoot = new PlayerShoot(player.getX() + player.getWidth() / 2 - (2 * 3) / 2 , player.getY() - i * 100, 6 * 3,
+					PlayerShoot pShoot = new PlayerShoot(player.getX() + player.getWidth() / 2 - (2 * 3) / 2 , player.getY() - i * 50, 6 * 3,
 							1 * 3, p);
 					playerShoot.add(pShoot);
 					lGameObject.add(pShoot);
@@ -401,7 +438,7 @@ public class World {
 	}
 	public void drops(Alien alien) {
 		if(customized==LevelType.DROPS) {
-			if(random.nextInt(101) < 15) {
+			if(random.nextInt(101) < 20) {
 				Drop drop = new Drop(alien.getX() + alien.getWidth() / 2, alien.getY() + alien.getHeight(), 15 * 1,15 * 1, p);
 				lDrop.add(drop);
 				lGameObject.add(drop);

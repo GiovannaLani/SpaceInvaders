@@ -9,8 +9,8 @@ import javax.imageio.ImageIO;
 
 public class Drop extends Shoot {
 
-	private Random random;
-	public static int SHOOT_THREE, SHOOT_SPEED, LARGER_SHIP, LASER, ALIEN_LINE, PERSONAL_SHIELD;
+	private static Random random = new Random();
+	public static int SHOOT_THREE, SHOOT_SPEED, LARGER_SHIP, BOMB, ALIEN_LINE, PERSONAL_SHIELD, PLAYER_SPEED;
 
 	public Drop(double x, double y, int height, int width, GamePanel p) {
 
@@ -18,20 +18,12 @@ public class Drop extends Shoot {
 		lives = 1;
 		speed = 150;
 		hasCollided = false;
-		random = new Random();
-		SHOOT_THREE = 0;
-		LARGER_SHIP = 0;
-		LASER = 0;
-		ALIEN_LINE = 0;
-		PERSONAL_SHIELD = 0;
 		try {
 			imgShoot = ImageIO.read(getClass().getResourceAsStream("/images/drop.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 
 	@Override
 	public void update(long millis) {
@@ -51,29 +43,53 @@ public class Drop extends Shoot {
 		return false;
 	}
 
-	public void dropFunction () {
-		int type = random.nextInt(6);
+	public void dropFunction() {
+		int type = random.nextInt(7);
 		switch (type) {
 		case 0: {
-			//Cambia velocidad de disparo jugador
-//			SHOOT_SPEED = p.getTimeCounter();
-		}case 1: {
-//			PERSONAL_SHIELD = p.getTimeCounter();
-		}case 2: {
-//			SHOOT_THREE=p.getTimeCounter();
-		}case 3: {
-//			LARGER_SHIP = p.getTimeCounter();
-		}case 4: {
-//			ALIEN_LINE = 1;
-		}case 5: {
-			
-		} 
-		default:
+			SHOOT_SPEED = p.getTimeCounter();
+			break;
+		}
+		case 1: {
+			PERSONAL_SHIELD = p.getTimeCounter();
+			break;
 
 		}
+		case 2: {
+			SHOOT_THREE = p.getTimeCounter();
+			break;
 
+		}
+		case 3: {
+			LARGER_SHIP = p.getTimeCounter();
+			break;
+
+		}
+		case 4: {
+			ALIEN_LINE = 1;
+			break;
+
+		}
+		case 5: {
+			BOMB = p.getTimeCounter();
+			break;
+		}
+		case 6: {
+			PLAYER_SPEED = p.getTimeCounter();
+			break;
+		}
+		}
 
 	}
-
+	
+	public static void restartDrops() {
+		SHOOT_SPEED = 0;
+		SHOOT_THREE = 0;
+		LARGER_SHIP = 0;
+		BOMB = 0;
+		ALIEN_LINE = 0;
+		PERSONAL_SHIELD = 0;
+		PLAYER_SPEED = 0;
+	}
 
 }
