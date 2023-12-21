@@ -19,7 +19,7 @@ public class SpaceInvaders extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	public SpaceInvaders(Player player, Game game,  LevelType customLevel, Menu menu) {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		Border lineBorder = BorderFactory.createLineBorder(Color.GREEN, 3, false);
 		
 		GamePanel gamePanel= new GamePanel(player, game, customLevel, menu, this);

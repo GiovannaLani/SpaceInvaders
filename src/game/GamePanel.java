@@ -4,13 +4,13 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import domain.Game;
 import domain.Player;
 import gui.Menu.Menu;
-
+import gui.customComponents.FontLoader;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
 
@@ -29,7 +29,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	public volatile boolean shouldRestart = false;
 
 	private final Object gameLock = new Object();
-
 
 	private Thread gameThread;
 	private long millis = 40;
@@ -42,41 +41,55 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	private SpaceInvaders window;
 	private int timeCounter = 0;
 	private final Object pauseLock = new Object();
+	private Chronometer chronometer;
 	private Game game;
 
-
-	public GamePanel(Player player, Game game, LevelType customLevel, Menu menu , SpaceInvaders window) {
-		this.customLevel=customLevel;
-		this.window=window;
+	public GamePanel(Player player, Game game, LevelType customLevel, Menu menu, SpaceInvaders window) {
+		this.customLevel = customLevel;
+		this.window = window;
 		this.game = game;
+		chronometer = new Chronometer();
 		setBackground(Color.black);
 		setAlignmentY(Component.CENTER_ALIGNMENT);
 		setPreferredSize(new Dimension(640, 700));
 		setFocusable(true);
 		addKeyListener(this);
 		layeredPane = new JLayeredPane();
-		layeredPane.setPreferredSize(new Dimension(640,700));
-		world = new World(this, customLevel,0,3,null);
+		layeredPane.setPreferredSize(new Dimension(640, 700));
+		world = new World(this, customLevel, 0, 3, null);
 		gamePaused = false;
 		pausePanel = new PausePanel(this, menu);
-		pausePanel.setBounds(160,175,(int)pausePanel.getPreferredSize().getWidth(),(int)pausePanel.getPreferredSize().getHeight());
+		pausePanel.setBounds(160, 175, (int) pausePanel.getPreferredSize().getWidth(),
+				(int) pausePanel.getPreferredSize().getHeight());
 		pausePanel.setVisible(false);
-		
+
 		gameOverPanel = new GameOver(this, menu);
-		gameOverPanel.setBounds(120,175,(int)gameOverPanel.getPreferredSize().getWidth(),(int)gameOverPanel.getPreferredSize().getHeight());
+		gameOverPanel.setBounds(120, 175, (int) gameOverPanel.getPreferredSize().getWidth(),
+				(int) gameOverPanel.getPreferredSize().getHeight());
 		gameOverPanel.setVisible(false);
-		
-		layeredPane.add(this,JLayeredPane.DEFAULT_LAYER);
-		layeredPane.add(pausePanel,JLayeredPane.POPUP_LAYER);
-		layeredPane.add(gameOverPanel,JLayeredPane.POPUP_LAYER);
-		this.setBounds(0,0,640,700);
+
+		layeredPane.add(this, JLayeredPane.DEFAULT_LAYER);
+		layeredPane.add(pausePanel, JLayeredPane.POPUP_LAYER);
+		layeredPane.add(gameOverPanel, JLayeredPane.POPUP_LAYER);
+		this.setBounds(0, 0, 640, 700);
+
+		window.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				pauseGame();
+				if (!gameOverPanel.isVisible()) {
+					pausePanel.setVisible(true);
+				}
+			}
+		});
 	}
 
 	public void startGameThread() {
-		if(gameThread == null || !gameThread.isAlive()) {
+		if (gameThread == null || !gameThread.isAlive()) {
 			gameThread = new Thread(this);
 			gameThread.start();
-		}else {
+			chronometer.startChronometer();
+		} else {
 			System.out.println("Attemped to start new thread while thread is alive");
 		}
 	}
@@ -88,31 +101,32 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		long startTime = System.currentTimeMillis();
 		long millisEnd;
 		try {
-			while (!world.getPlayer().isDead() && gameThread!=null && !Thread.currentThread().isInterrupted() && !shouldRestart) {
-				if(!(gamePaused)) {
-					timeInc= System.currentTimeMillis();
+			while (!world.getPlayer().isDead() && gameThread != null && !Thread.currentThread().isInterrupted()
+					&& !shouldRestart && window.isShowing()) {
+				if (!(gamePaused)) {
+					timeInc = System.currentTimeMillis();
 					update();
 					repaint();
-					timeEnd=System.currentTimeMillis();
-					millisEnd=millis-(timeEnd-timeInc);
-					timeCounter = (int) ((timeEnd-startTime)/1000);
-					if(millisEnd>0) {
+					timeEnd = System.currentTimeMillis();
+					millisEnd = millis - (timeEnd - timeInc);
+					timeCounter = (int) ((timeEnd - startTime) / 1000);
+					if (millisEnd > 0) {
 						Thread.sleep(millisEnd);
 					}
-				}else {
+				} else {
 					synchronized (pauseLock) {
-						while(gamePaused && !Thread.currentThread().isInterrupted()) { }
+						while (gamePaused && !Thread.currentThread().isInterrupted() && window.isShowing()) {
+						}
 					}
 				}
 			}
-			if(world.getPlayer().isDead()) {
+			if (world.getPlayer().isDead()) {
 				gameOverPanel.setVisible(true);
 			}
 		} catch (InterruptedException e) {
 
 			System.out.println("Thread Interrupted");
-		}
-		finally {
+		} finally {
 			cleanThread();
 			synchronized (this) {
 				this.notifyAll();
@@ -128,9 +142,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		}
 
 	}
+
 	public void update() {
 		synchronized (pauseLock) {
-			if(!gamePaused)world.update(millis);
+			if (!gamePaused)
+				world.update(millis);
 		}
 	}
 
@@ -140,7 +156,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		g2.setColor(Color.GREEN);
 		g2.setStroke(new BasicStroke(3));
 		g2.drawLine(0, 640, 640, 640);
-		g2.setFont(font(30));
+		g2.setFont(new FontLoader().getCustomFont(30));
 		g2.drawString(world.getPlayer().getLives() + "", 10, 690);
 		int[] coordLifes = { 50, 100, 150 };
 		for (int i = 0; i < world.getPlayer().getLives(); i++) {
@@ -153,7 +169,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		}
 		g2.setColor(Color.WHITE);
 		g2.drawString("SCORE", 10, 50);
-		g2.drawString(world.getPlayer().getPoints() + "",70,90);
+		g2.drawString(world.getPlayer().getPoints() + "", 70, 90);
+		g2.drawString(chronometer.toString(), 450, 50);
 		world.draw(g2);
 	}
 
@@ -170,12 +187,13 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			world.shootPlayer();
 		}
-		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			pauseGame();
-			if(!(gamePaused)) {
-				pausePanel.setVisible(false);
-			}else {
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			if (!(gamePaused)) {
+				pauseGame();
 				pausePanel.setVisible(true);
+			} else {
+				resumeGame();
+				pausePanel.setVisible(false);
 			}
 		}
 
@@ -196,17 +214,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	public void keyTyped(KeyEvent e) {
 	}
 
-	public Font font(int size) {
-		Font font = null;
-		try {
-			InputStream is = getClass().getResourceAsStream("/fuentes/PressStart2P-Regular.ttf");
-			font = Font.createFont(Font.TRUETYPE_FONT, is);
-			font = font.deriveFont(Font.PLAIN, size);
-		} catch (Exception e) {
-			font = new Font("Arial", Font.BOLD, size);
-		}
-		return font;
-	}
 	public World getWorld() {
 		return world;
 	}
@@ -239,7 +246,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		this.game = game;
 	}
 
-
 	public void restartGame(int points, List<Shield> lShield) {
 		synchronized (gameLock) {
 			float alienSpeed;
@@ -247,7 +253,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			if (gameThread != null) {
 				gameThread.interrupt();
 				try {
-					gameThread.join(1000); 
+					gameThread.join(1000);
 					if (gameThread != null && gameThread.isAlive()) {
 						System.out.println("Warning: Game thread did not terminate in the expected time.");
 					}
@@ -261,12 +267,13 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			pausePanel.setVisible(false);
 			gameOverPanel.setVisible(false);
 			this.requestFocus();
-			if(points > 0) {
+			if (points > 0) {
 				game.setLevel(game.getLevel() + 1);
 				alienSpeed = Alien.getSpeed();
-			}else {
+			} else {
 				game.setLevel(1);
 				alienSpeed = 20;
+				chronometer.restartChronometer();
 			}
 			world = new World(this, customLevel, points, 3, lShield);
 			Drop.restartDrops();
@@ -275,23 +282,30 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 		}
 	}
+
 	public void disposeWindow() {
+		chronometer.finishChronometer();
 		window.dispose();
 	}
+
 	public void pauseGame() {
 		synchronized (pauseLock) {
 			gamePaused = true;
+			chronometer.stopChronometer();
 		}
 	}
 
 	public void resumeGame() {
 		gamePaused = false;
+		chronometer.continueChronometer();
 		synchronized (pauseLock) {
 			pauseLock.notifyAll();
 		}
 	}
+
 	private void cleanThread() {
 		gameThread = null;
 		gamePaused = false;
 	}
+
 }
