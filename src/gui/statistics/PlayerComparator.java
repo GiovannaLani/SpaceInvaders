@@ -21,7 +21,7 @@ public class PlayerComparator implements Comparator<Game> {
 		case FECHA:
 			return o2.getDate().compareTo(o1.getDate());
 		case TIEMPO:
-			return (int) (o1.getTime() - o2.getTime());
+			return (int) (o1.getTime().getMilliSeconds() - o2.getTime().getMilliSeconds());
 		case NIVEL:
 			return o2.getLevel() - o1.getLevel();
 		default:

@@ -30,6 +30,7 @@ import controller.DBException;
 import controller.DatabaseController;
 import domain.Game;
 import domain.Player;
+import game.Chronometer;
 import game.LevelType;
 import game.SpaceInvaders;
 import gui.customComponents.ButtonPixel;
@@ -178,7 +179,7 @@ public class InfoWindow extends JFrame {
 	public void startGame() {
 		if (jbLevelType.getSelectedIndex() == 0) {
 			customLevel = LevelType.NORMAL;
-		}else if(jbLevelType.getSelectedIndex() == 0) {
+		}else if(jbLevelType.getSelectedIndex() == 1) {
 			customLevel = LevelType.CUSTOM;
 		}else {
 			customLevel = LevelType.DROPS;
@@ -187,7 +188,7 @@ public class InfoWindow extends JFrame {
 			JOptionPane.showMessageDialog(null,"Hay campos sin rellenar");
 		}else {
 			Player player= new Player(txtName.getText(), String.valueOf(pfPassword.getPassword()), jbCountries.getSelectedItem().toString());
-			SwingUtilities.invokeLater(() -> new SpaceInvaders(player, new Game(player,0,0,null,1), customLevel, menu));
+			SwingUtilities.invokeLater(() -> new SpaceInvaders(player, new Game(player,0,new Chronometer(),null,1), customLevel, menu));
 			this.dispose();
 		}
 	}

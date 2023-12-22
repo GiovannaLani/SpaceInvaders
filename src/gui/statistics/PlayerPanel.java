@@ -33,11 +33,6 @@ public class PlayerPanel extends JPanel {
 	private List<Game> playerData;
 
 	public PlayerPanel() {
-		// ELIMINAR (datos prueba)
-		Player p1 = new Player("Nombre1", "x", "Pais1");
-		Player p2 = new Player("Nombre2", "x", "Pais2");
-		Player p3 = new Player("Nombre3", "x", "Pais3");
-
 		List<Player> names = new ArrayList<Player>();
 		try {
 			names = DatabaseController.getInstance().loadPlayer();
@@ -45,16 +40,6 @@ public class PlayerPanel extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		List<Game> data = new ArrayList<>();
-		data.add(new Game(p1, 5000, 1000000, LocalDate.of(2023, 11, 10), 1));
-		data.add(new Game(p1, 3000, 2000000, LocalDate.of(2023, 11, 9), 2));
-		data.add(new Game(p1, 6000, 3000000, LocalDate.of(2023, 11, 8), 3));
-
-		data.add(new Game(p2, 4000, 1000000, LocalDate.of(2023, 11, 9), 1));
-		data.add(new Game(p2, 6000, 3000000, LocalDate.of(2023, 11, 8), 3));
-
-		data.add(new Game(p3, 3000, 1000000, LocalDate.of(2023, 11, 8), 1));
-		data.add(new Game(p3, 6000, 3000000, LocalDate.of(2023, 11, 7), 3));
 		playerData = new ArrayList<>();
 
 		/////////

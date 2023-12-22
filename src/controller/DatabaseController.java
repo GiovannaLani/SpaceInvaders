@@ -14,6 +14,7 @@ import java.util.List;
 
 import domain.Game;
 import domain.Player;
+import game.Chronometer;
 
 public class DatabaseController {
 	private static DatabaseController instance = new DatabaseController();
@@ -64,7 +65,7 @@ public class DatabaseController {
 			prepstmt.setString(2, game.getPlayer().getPassword());
 			prepstmt.setString(3, game.getPlayer().getCountry());
 			prepstmt.setString(4, LocalDateTime.now().format(date));
-			prepstmt.setDouble(5, 0);
+			prepstmt.setDouble(5, game.getTime().getMilliSeconds());
 			prepstmt.setInt(6, game.getScore());
 			prepstmt.setInt(7, game.getLevel());
 
@@ -121,7 +122,7 @@ public class DatabaseController {
 						rs.getString("password"),
 						rs.getString("country")),
 						rs.getInt("game_score"),
-						rs.getLong("game_duration"),
+						new Chronometer(rs.getLong("game_duration")),
 						LocalDate.parse(rs.getString("date")),
 						rs.getInt("game_level"));
 
@@ -148,7 +149,7 @@ public class DatabaseController {
 						rs.getString("password"),
 						rs.getString("country")),
 						rs.getInt("game_score"),
-						rs.getLong("game_duration"),
+						new Chronometer(rs.getLong("game_duration")),
 						LocalDate.parse(rs.getString("date")),
 						rs.getInt("game_level"));
 
@@ -194,7 +195,7 @@ public class DatabaseController {
 						rs.getString("password"),
 						rs.getString("country")),
 						rs.getInt("game_score"),
-						rs.getLong("game_duration"),
+						new Chronometer(rs.getLong("game_duration")),
 						LocalDate.parse(rs.getString("date")),
 						rs.getInt("game_level"));
 

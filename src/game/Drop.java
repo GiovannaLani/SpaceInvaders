@@ -9,9 +9,11 @@ import javax.imageio.ImageIO;
 
 public class Drop extends Shoot {
 
+
 	private Random random;
 	public static int ALIEN_LINE;
-	public int shootThree, shootSpeed, largerShip, laser, personalShield;
+	public int shootThree, shootSpeed, largerShip, personalShield, bomb, playerSpeed;
+
 
 	public Drop(double x, double y, int height, int width, GamePanel p) {
 
@@ -21,18 +23,19 @@ public class Drop extends Shoot {
 		hasCollided = false;
 		random = new Random();
 		shootThree = 0;
+		shootSpeed = 0;
 		largerShip = 0;
-		laser = 0;
 		ALIEN_LINE = 0;
 		personalShield = 0;
+		bomb = 0;
+		playerSpeed = 0;
+
 		try {
 			imgShoot = ImageIO.read(getClass().getResourceAsStream("/images/drop.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 
 	@Override
 	public void update(long millis) {
@@ -52,29 +55,36 @@ public class Drop extends Shoot {
 		return false;
 	}
 
-	public void dropFunction () {
-		int type = random.nextInt(6);
+	public void dropFunction() {
+		int type = random.nextInt(7);
 		switch (type) {
 		case 0: {
 			//Cambia velocidad de disparo jugador
 			shootSpeed = p.getTimeCounter();
+			break;
 		}case 1: {
 			personalShield = p.getTimeCounter();
+			break;
 		}case 2: {
 			shootThree = p.getTimeCounter();
+			break;
 		}case 3: {
 			largerShip = p.getTimeCounter();
+			break;
 		}case 4: {
-//			ALIEN_LINE = 1;
+			ALIEN_LINE = 1;
+			break;
 		}case 5: {
-			
+			bomb = p.getTimeCounter();
+			break;
 		} 
 		default:
-
+			playerSpeed = p.getTimeCounter();
+			break;
 		}
 
-
 	}
+
 
 
 	public int getShootThree() {
@@ -107,13 +117,13 @@ public class Drop extends Shoot {
 	}
 
 
-	public int getLaser() {
-		return laser;
+	public int getBomb() {
+		return bomb;
 	}
 
 
-	public void setLaser(int laser) {
-		this.laser = laser;
+	public void setBomb(int bomb) {
+		this.bomb = bomb;
 	}
 
 
@@ -125,8 +135,13 @@ public class Drop extends Shoot {
 	public void setPersonalShield(int personalShield) {
 		this.personalShield = personalShield;
 	}
-	
-	
 
+	public int getPlayerSpeed() {
+		return playerSpeed;
+	}
+
+	public void setPlayerSpeed(int playerSpeed) {
+		this.playerSpeed = playerSpeed;
+	}
 
 }

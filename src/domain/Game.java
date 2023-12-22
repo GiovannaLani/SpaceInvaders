@@ -2,14 +2,16 @@ package domain;
 
 import java.time.LocalDate;
 
+import game.Chronometer;
+
 public class Game {
 	private Player player;
 	private int score;
-	private long time;
+	private Chronometer time;
 	private LocalDate date;
 	private int level;
 
-	public Game(Player player, int score, long time, LocalDate date, int level) {
+	public Game(Player player, int score, Chronometer time, LocalDate date, int level) {
 		super();
 		this.player = player;
 		this.score = score;
@@ -34,11 +36,11 @@ public class Game {
 		this.score = score;
 	}
 
-	public long getTime() {
+	public Chronometer getTime() {
 		return time;
 	}
 
-	public void setTime(long time) {
+	public void setTime(Chronometer time) {
 		this.time = time;
 	}
 
