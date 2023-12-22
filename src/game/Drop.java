@@ -10,7 +10,8 @@ import javax.imageio.ImageIO;
 public class Drop extends Shoot {
 
 	private Random random;
-	public static int SHOOT_THREE, SHOOT_SPEED, LARGER_SHIP, LASER, ALIEN_LINE, PERSONAL_SHIELD;
+	public static int ALIEN_LINE;
+	public int shootThree, shootSpeed, largerShip, laser, personalShield;
 
 	public Drop(double x, double y, int height, int width, GamePanel p) {
 
@@ -19,11 +20,11 @@ public class Drop extends Shoot {
 		speed = 150;
 		hasCollided = false;
 		random = new Random();
-		SHOOT_THREE = 0;
-		LARGER_SHIP = 0;
-		LASER = 0;
+		shootThree = 0;
+		largerShip = 0;
+		laser = 0;
 		ALIEN_LINE = 0;
-		PERSONAL_SHIELD = 0;
+		personalShield = 0;
 		try {
 			imgShoot = ImageIO.read(getClass().getResourceAsStream("/images/drop.png"));
 		} catch (IOException e) {
@@ -56,13 +57,13 @@ public class Drop extends Shoot {
 		switch (type) {
 		case 0: {
 			//Cambia velocidad de disparo jugador
-//			SHOOT_SPEED = p.getTimeCounter();
+			shootSpeed = p.getTimeCounter();
 		}case 1: {
-//			PERSONAL_SHIELD = p.getTimeCounter();
+			personalShield = p.getTimeCounter();
 		}case 2: {
-//			SHOOT_THREE=p.getTimeCounter();
+			shootThree = p.getTimeCounter();
 		}case 3: {
-//			LARGER_SHIP = p.getTimeCounter();
+			largerShip = p.getTimeCounter();
 		}case 4: {
 //			ALIEN_LINE = 1;
 		}case 5: {
@@ -74,6 +75,58 @@ public class Drop extends Shoot {
 
 
 	}
+
+
+	public int getShootThree() {
+		return shootThree;
+	}
+
+
+	public void setShootThree(int shootThree) {
+		this.shootThree = shootThree;
+	}
+
+
+	public int getShootSpeed() {
+		return shootSpeed;
+	}
+
+
+	public void setShootSpeed(int shootSpeed) {
+		this.shootSpeed = shootSpeed;
+	}
+
+
+	public int getLargerShip() {
+		return largerShip;
+	}
+
+
+	public void setLargerShip(int largerShip) {
+		this.largerShip = largerShip;
+	}
+
+
+	public int getLaser() {
+		return laser;
+	}
+
+
+	public void setLaser(int laser) {
+		this.laser = laser;
+	}
+
+
+	public int getPersonalShield() {
+		return personalShield;
+	}
+
+
+	public void setPersonalShield(int personalShield) {
+		this.personalShield = personalShield;
+	}
+	
+	
 
 
 }

@@ -13,11 +13,15 @@ public class PlayerShip extends GameObject {
 	private int points;
 	private BufferedImage imgPlayer, imgPlayerShield, imgPlayerKill;
 	private int speed_x = 300;
-	private int largeWidth = width + 40; 
+	private int largeWidth = width + 40;
+	private int personalShield;
+	private int largerShip;
 
 	public PlayerShip(double x, double y, int height, int width, GamePanel p) {
 		super(x, y, height, width, p);
 		lives = 3;
+		personalShield = 0;
+		largerShip = 0;
 		try {
 			imgPlayer = ImageIO.read(getClass().getResourceAsStream("/images/player.png"));
 			imgPlayerKill = ImageIO.read(getClass().getResourceAsStream("/images/player_kill.png"));
@@ -32,12 +36,12 @@ public class PlayerShip extends GameObject {
 		BufferedImage image = null;
 		if (isDead()) {
 			image = imgPlayerKill;
-		}else if (Drop.PERSONAL_SHIELD !=0 && (p.getTimeCounter() - Drop.PERSONAL_SHIELD)< 5) {
+		}else if (personalShield != 0 && (p.getTimeCounter() - personalShield) < 5) {
 			image = imgPlayerShield;
 		} else {
 			image = imgPlayer;
 		}
-		if (Drop.LARGER_SHIP !=0 && (p.getTimeCounter() - Drop.LARGER_SHIP)< 10) {
+		if (largerShip != 0 && (p.getTimeCounter() - largerShip) < 10) {
 			width = largeWidth;
 		}else {
 			width = largeWidth - 40;
@@ -75,4 +79,22 @@ public class PlayerShip extends GameObject {
 	public void setPoints(int points) {
 		this.points = points;
 	}
+
+	public int getPersonalShield() {
+		return personalShield;
+	}
+
+	public void setPersonalShield(int personalShield) {
+		this.personalShield = personalShield;
+	}
+
+	public int getLargerShip() {
+		return largerShip;
+	}
+
+	public void setLargerShip(int largerShip) {
+		this.largerShip = largerShip;
+	}
+	
+	
 }
