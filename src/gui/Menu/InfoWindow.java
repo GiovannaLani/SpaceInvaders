@@ -26,8 +26,8 @@ import javax.swing.JPasswordField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
-import controller.DBException;
-import controller.DatabaseController;
+import db.DBException;
+import db.DatabaseController;
 import domain.Game;
 import domain.Player;
 import game.Chronometer;
@@ -152,7 +152,8 @@ public class InfoWindow extends JFrame {
 					if(DatabaseController.getInstance().checkUserByUsernameAndPassword(txtName.getText(), String.valueOf(pfPassword.getPassword()))) {
 						startGame();
 					}
-					//TODO crear pantalla fallo de verificacion
+					else {
+						JOptionPane.showMessageDialog(null, "La contraseña introducida es incorrecta. Inténtelo de nuevo.", "Error contraseña", JOptionPane.ERROR_MESSAGE);					}
 				}else {
 					startGame();
 				}

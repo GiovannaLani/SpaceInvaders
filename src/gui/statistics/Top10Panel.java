@@ -10,8 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 
-import controller.DBException;
-import controller.DatabaseController;
+import db.DBException;
+import db.DatabaseController;
 import domain.Game;
 
 

@@ -22,8 +22,8 @@ import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import controller.DBException;
-import controller.DatabaseController;
+import db.DBException;
+import db.DatabaseController;
 import domain.Game;
 import domain.Player;
 

@@ -11,8 +11,8 @@ import java.util.Random;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import controller.DBException;
-import controller.DatabaseController;
+import db.DBException;
+import db.DatabaseController;
 
 public class World {
 	private static final int[] ALIEN_ROW = { 100, 130, 160, 190, 220 };

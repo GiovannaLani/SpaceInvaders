@@ -1,7 +1,7 @@
 package main;
 import javax.swing.SwingUtilities;
 
-import controller.SettingsController;
+import db.SettingsController;
 import gui.Menu.Menu;
 
 public class Main {

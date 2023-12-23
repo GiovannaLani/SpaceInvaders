@@ -1,4 +1,4 @@
-package controller;
+package db;
 
 // Esta excepción personalizada es utilizada por la
 // clase DBManager para indicar distintos errores.
