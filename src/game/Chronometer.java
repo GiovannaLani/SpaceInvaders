@@ -15,16 +15,7 @@ public class Chronometer {
 		chronometer = new Thread() {
 			@Override
 			public void run() {
-				while (!finish) {
-					if (count) {
-						milliSeconds += 1000;
-
-					}
-					try {
-						sleep(1000);
-					} catch (InterruptedException e) {
-					}
-				}
+				recursiveChronometer();
 			}
 		};
 	}
@@ -67,5 +58,18 @@ public class Chronometer {
 	@Override
 	public String toString() {
 		return formatoHora.format(milliSeconds);
+	}
+	
+	public void recursiveChronometer() {
+		if(!finish) {
+			if(count) {
+				milliSeconds += 1000;
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+			}
+			recursiveChronometer();
+		}
 	}
 }
