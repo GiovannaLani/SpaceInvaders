@@ -1,6 +1,8 @@
 package gui.statistics;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,15 +26,13 @@ public class Top10Panel extends JPanel {
 		try {
 			playersData = DatabaseController.getInstance().selectTop10();
 		} catch (DBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		/////////
 		setLayout(new BorderLayout());
-
+		
 		// COMPONENTES
-		// JList de los jugadores
 		
 		Border empty = BorderFactory.createEmptyBorder(10, 20, 10, 20);
 		JPanel panel = new JPanel(new BorderLayout());
@@ -40,11 +40,17 @@ public class Top10Panel extends JPanel {
 		// Tabla
 		TopTableModel tableModel = new TopTableModel(playersData);
 		JTable jTable = new JTable(tableModel);
-		JScrollPane scrollPain = new JScrollPane(jTable);
-		scrollPain.setBorder(empty);
-		panel.add(scrollPain);
+		JScrollPane scrollPane = new JScrollPane(jTable);
+		scrollPane.setBackground(Color.BLACK);
+		scrollPane.getViewport().setBackground(Color.BLACK);
+		scrollPane.setBorder(empty);
+		panel.add(scrollPane);;
 		add(panel);
 
-
+		// Renderer
+		jTable.setDefaultRenderer(Object.class, new TableRenderer()); 
+		jTable.getTableHeader().setDefaultRenderer(new HeaderRenderer()); 
+		jTable.getTableHeader().setPreferredSize(new Dimension(15,20));	 
+		
 	}
 }

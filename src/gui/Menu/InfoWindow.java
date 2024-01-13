@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -153,12 +154,12 @@ public class InfoWindow extends JFrame {
 						startGame();
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "La contraseña introducida es incorrecta. Inténtelo de nuevo.", "Error contraseña", JOptionPane.ERROR_MESSAGE);					}
+						JLabel message = new LabelPixel("La contraseña introducida es incorrecta. Inténtelo de nuevo.", 8);
+						JOptionPane.showMessageDialog(null, message, "Error contraseña", JOptionPane.ERROR_MESSAGE);					}
 				}else {
 					startGame();
 				}
 			} catch (DBException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
@@ -186,7 +187,10 @@ public class InfoWindow extends JFrame {
 			customLevel = LevelType.DROPS;
 		}
 		if (txtName.getText().isEmpty() || pfPassword.getPassword().length == 0) {
-			JOptionPane.showMessageDialog(null,"Hay campos sin rellenar");
+
+			JLabel message = new LabelPixel("Hay campos sin rellenar", 8);
+
+			JOptionPane.showMessageDialog(null, message, "Message", JOptionPane.INFORMATION_MESSAGE);
 		}else {
 			Player player= new Player(txtName.getText(), String.valueOf(pfPassword.getPassword()), jbCountries.getSelectedItem().toString());
 			SwingUtilities.invokeLater(() -> new SpaceInvaders(player, new Game(player,0,new Chronometer(),null,1), customLevel, menu));

@@ -14,12 +14,15 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 import gui.customComponents.ButtonPixel;
+import gui.customComponents.FontLoader;
 import gui.customComponents.LabelPixel;
 import gui.statistics.StatisticsWindow;
 
@@ -31,14 +34,14 @@ public class Menu extends JFrame {
 	
 	public Menu() {
 		
-		//logger
+		// Logger
 		try (FileInputStream fis = new FileInputStream("res/logger.properties")) {
 			LogManager.getLogManager().readConfiguration(fis);
 		} catch (IOException e) {
 			logger.severe( "No se pudo leer el fichero de configuración del logger");
 		}
 
-		// Conficuración ventana
+		// Configuración ventana
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setTitle("Menú Principal");
 		setBackground(Color.BLACK);
@@ -81,6 +84,18 @@ public class Menu extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 
+		// Visual de todos los JOptionPane
+		UIManager.put("Panel.background", Color.BLACK);
+		UIManager.put("OptionPane.background", Color.BLACK);
+		UIManager.put("Button.background", Color.BLACK);
+		UIManager.put("Button.foreground", Color.WHITE);
+		UIManager.put("Button.font", new FontLoader().getCustomFont(8));
+		UIManager.put("Button.border", BorderFactory.createLineBorder(Color.WHITE));
+		Border emptyBorder2 = BorderFactory.createEmptyBorder(8, 8, 8, 8);
+		Border lineBorder = BorderFactory.createLineBorder(Color.WHITE, 2, true);
+		UIManager.put("Button.border", BorderFactory.createCompoundBorder(lineBorder, emptyBorder2));
+				
+		
 		// Listeners
 		bPlay.addActionListener(e -> {
 			SwingUtilities.invokeLater(() -> {
@@ -109,7 +124,8 @@ public class Menu extends JFrame {
 		});
 
 		bExit.addActionListener(e -> {
-			int input = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres salir?", "Salir",
+			JLabel message = new LabelPixel("¿Seguro que quieres salir?",8);
+			int input = JOptionPane.showConfirmDialog(null, message, "Salir",
 					JOptionPane.YES_NO_OPTION);
 			if (input == JOptionPane.YES_OPTION) {
 				this.dispose();
@@ -120,7 +136,8 @@ public class Menu extends JFrame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				int input = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres salir?", "Salir",
+				JLabel message = new LabelPixel("¿Seguro que quieres salir?",8);
+				int input = JOptionPane.showConfirmDialog(null, message, "Salir",
 						JOptionPane.YES_NO_OPTION);
 				if (input == JOptionPane.YES_OPTION) {
 					Menu.this.dispose();
