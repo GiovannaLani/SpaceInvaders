@@ -23,7 +23,7 @@ public class DatabaseController {
 		initializeDB();
 	}
 
-	private void initializeDB() {
+	public void initializeDB() {
 		//id,username,password,country,game_date, game_duration, game_score, game_level
 		String sql = "CREATE TABLE IF NOT EXISTS game (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL, country TEXT NOT NULL, date TEXT NOT NULL, game_duration REAL, game_score INTEGER, game_level INTEGER);";
 		try (Connection conn = this.connect();

@@ -73,15 +73,18 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		layeredPane.add(gameOverPanel, JLayeredPane.POPUP_LAYER);
 		this.setBounds(0, 0, 640, 700);
 
-		window.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				pauseGame();
-				if (!gameOverPanel.isVisible()) {
-					pausePanel.setVisible(true);
+		if(window !=null) {
+			window.addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosing(WindowEvent e) {
+					pauseGame();
+					if (!gameOverPanel.isVisible()) {
+						pausePanel.setVisible(true);
+					}
 				}
-			}
-		});
+
+			});
+		}
 	}
 
 	public void startGameThread() {
