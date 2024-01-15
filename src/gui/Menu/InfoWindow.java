@@ -17,6 +17,7 @@ import java.util.Set;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -61,6 +62,13 @@ public class InfoWindow extends JFrame {
 		super();
 		this.menu = menu;
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setTitle("Inicar sesión");
+		try {
+			setIconImage(ImageIO.read(getClass().getResourceAsStream("/images/WindowIcon.png")));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		setResizable(false);
 
 		//logger
 		try (FileInputStream fis = new FileInputStream("res/logger.properties")) {
@@ -95,7 +103,7 @@ public class InfoWindow extends JFrame {
 		// convierte countryList a un array de strings
 		String[] arrayOfCountries = countryList.toArray(new String[0]);
 		jbCountries = new ComboBoxPixel(arrayOfCountries, 10);
-
+		jbCountries.setSelectedItem(Locale.getDefault().getDisplayCountry());
 		// orden y colocacion de los paneles
 		pCenter = new JPanel();
 		pCenter.setBackground(Color.BLACK);

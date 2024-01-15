@@ -5,7 +5,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
@@ -21,6 +23,11 @@ public class StatisticsWindow extends JFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(640, 480);
 		setTitle("Estadísticas");
+		try {
+			setIconImage(ImageIO.read(getClass().getResourceAsStream("/images/WindowIcon.png")));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		setLocationRelativeTo(null);
 		
 		

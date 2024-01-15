@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -45,6 +46,11 @@ public class Menu extends JFrame {
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setTitle("Menú Principal");
 		setBackground(Color.BLACK);
+		try {
+			setIconImage(ImageIO.read(getClass().getResourceAsStream("/images/WindowIcon.png")));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 
 		// Border
 		Border emptyBorder = BorderFactory.createEmptyBorder(20, 30, 20, 30);

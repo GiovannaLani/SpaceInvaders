@@ -77,8 +77,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			window.addWindowListener(new WindowAdapter() {
 				@Override
 				public void windowClosing(WindowEvent e) {
-					pauseGame();
-					if (!gameOverPanel.isVisible()) {
+					if (!gameOverPanel.isVisible() && !isGamePaused()) {
+						pauseGame();
 						pausePanel.setVisible(true);
 					}
 				}

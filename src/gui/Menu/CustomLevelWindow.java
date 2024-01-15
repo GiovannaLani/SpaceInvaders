@@ -19,6 +19,7 @@ import java.io.ObjectOutputStream;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -61,8 +62,14 @@ public class CustomLevelWindow extends JFrame {
 		}
 		logger.info("Se ha creado la ventana de nivel personalizado");
 		
-		// cerrar ventana
+		// 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Nivel personalizado");
+		try {
+			setIconImage(ImageIO.read(getClass().getResourceAsStream("/images/WindowIcon.png")));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		// Cargar lista de alienigenas
 		lEnemies = loadLevel("res/data/level.dat");
 		// Paneles
