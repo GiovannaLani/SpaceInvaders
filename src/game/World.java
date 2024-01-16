@@ -250,7 +250,6 @@ public class World {
 	}
 
 	public void update(long millis) {
-		System.out.println(Alien.getSpeed()+ " " + maxSpeed);
 		if (Drop.ALIEN_LINE == 1) {
 			List<Alien> lnewAlien = new ArrayList<>();
 			double maxY = 700;
