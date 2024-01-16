@@ -11,11 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -51,18 +47,18 @@ public class CustomLevelWindow extends JFrame {
 	private String selectedButton;
 
 	private static Logger logger = Logger.getLogger(CustomLevelWindow.class.getName());
-	
+
 	public CustomLevelWindow(Menu menuWindow) {
-		
-		//logger
+
+		// logger
 		try (FileInputStream fis = new FileInputStream("res/logger.properties")) {
 			LogManager.getLogManager().readConfiguration(fis);
 		} catch (IOException e) {
-			logger.severe( "No se pudo leer el fichero de configuración del logger");
+			logger.severe("No se pudo leer el fichero de configuración del logger");
 		}
 		logger.info("Se ha creado la ventana de nivel personalizado");
-		
-		// 
+
+		//
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Nivel personalizado");
 		try {
@@ -71,7 +67,10 @@ public class CustomLevelWindow extends JFrame {
 			e1.printStackTrace();
 		}
 		// Cargar lista de alienigenas
-		lEnemies = loadLevel("res/data/level.dat");
+		lEnemies = FileManager.readFile();
+		if (lEnemies == null) {
+			lEnemies = new String[10][12];
+		}
 		// Paneles
 		JPanel pCenter = new JPanel(new BorderLayout());
 		JPanel pLeft = new JPanel(new BorderLayout());
@@ -261,18 +260,10 @@ public class CustomLevelWindow extends JFrame {
 					JOptionPane.showMessageDialog(pCenter, "Tiene que haber al menos un marciano.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-					try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("res/data/level.dat"))) {
-						oos.writeObject(lEnemies);
-						logger.info("Fichero 'level.dat' guardado correctamente");
-						CustomLevelWindow.this.dispose();
-						menuWindow.setVisible(true);
-					} catch (FileNotFoundException e1) {
-						e1.printStackTrace();
-						logger.warning("No se encuentra el fichero 'level.dat'");
-					} catch (IOException e1) {
-						e1.printStackTrace();
-						logger.warning("Error al guardar el fichero 'level.dat'");
-					}
+					FileManager.writeFile(lEnemies);
+					logger.info("Fichero 'level.dat' guardado correctamente");
+					CustomLevelWindow.this.dispose();
+					menuWindow.setVisible(true);
 				}
 			}
 		});
@@ -291,21 +282,6 @@ public class CustomLevelWindow extends JFrame {
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
-	}
-
-	public String[][] loadLevel(String file) {
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-			lEnemies = (String[][]) ois.readObject();
-			logger.info("Fichero cargado correctamente");
-			return lEnemies;
-		} catch (IOException e) {
-			e.printStackTrace();
-			logger.warning("Error al leer el fichero");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			logger.warning("Error en tipo de dato");
-		}
-		return new String[10][12];
 	}
 
 	public static int getNumRow() {
