@@ -260,7 +260,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 	public void restartGame(int points, List<Shield> lShield) {
 		synchronized (gameLock) {
-			float alienSpeed;
 			System.out.println("Restarting Game!");
 			if (gameThread != null) {
 				gameThread.interrupt();
@@ -281,10 +280,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			this.requestFocus();
 			if (points > 0) {
 				game.setLevel(game.getLevel() + 1);
-				alienSpeed = Alien.getSpeed();
 			} else {
 				game.setLevel(1);
-				alienSpeed = 20;
 				chronometer.restartChronometer();
 			}
 			world = new World(this, customLevel, points, 3, lShield);

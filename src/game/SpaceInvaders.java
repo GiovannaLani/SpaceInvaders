@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class SpaceInvaders extends JFrame{
 		panelPrincipal.add(gamePanel.layeredPane, gbc);
 		add(panelPrincipal);
 		pack();
-				
+		setMinimumSize(new Dimension(850,950));
 		setLocationRelativeTo(null);
 		setVisible(true);
 		

@@ -3,7 +3,6 @@ package game;
 import java.awt.Graphics2D;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -34,7 +33,7 @@ public class World {
 	private List<Drop> activeDrops;
 	private List<Bomb> lBomb;
 	private float alienSpeed = 20;
-	private float maxSpeed = 35;
+	private static float maxSpeed;
 	private int elapsedTimeToAlienShipCreation = 10;
 	private int contPlayerShoot = 0;
 	private int maxPlayerShoot = 1;
@@ -71,10 +70,11 @@ public class World {
 			for (int i = 0; i < 4; i++) {
 				createShield(60 + 150 * i);
 			}
+			maxSpeed = 35;
 		} else {
 			lGameObject.addAll(lShield);
 			alienSpeed = Alien.getSpeed();
-			maxSpeed += 15;
+			maxSpeed += 3;
 		}
 		alienShoot = null;
 		player = new PlayerShip(320, 590, 8 * 4, 13 * 4, p);
@@ -250,6 +250,7 @@ public class World {
 	}
 
 	public void update(long millis) {
+		System.out.println(Alien.getSpeed()+ " " + maxSpeed);
 		if (Drop.ALIEN_LINE == 1) {
 			List<Alien> lnewAlien = new ArrayList<>();
 			double maxY = 700;
@@ -270,7 +271,7 @@ public class World {
 		}
 		for (Drop d : activeDrops) {
 			if ((p.getTimeCounter() - d.getShootSpeed()) < 5 && !(d.getShootSpeed() == 0)) {
-				PlayerShoot.setPlayerShootSpeed(1000);
+				PlayerShoot.setPlayerShootSpeed(900);
 			}
 			if (d.getLargerShip() != 0 && (p.getTimeCounter() - d.getLargerShip()) < 10) {
 				player.setLargerShip(d.getLargerShip());
