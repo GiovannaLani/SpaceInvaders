@@ -159,12 +159,14 @@ public class InfoWindow extends JFrame {
 			try {
 				if(DatabaseController.getInstance().userExists(txtName.getText())) {
 					if(DatabaseController.getInstance().checkUserByUsernameAndPassword(txtName.getText(), String.valueOf(pfPassword.getPassword()))) {
+						DatabaseController.getInstance().updatePlayer(new Player(txtName.getText(), new String(pfPassword.getPassword()), jbCountries.getSelectedItem().toString()));
 						startGame();
 					}
 					else {
 						JLabel message = new LabelPixel("La contraseña introducida es incorrecta. Inténtelo de nuevo.", 8);
 						JOptionPane.showMessageDialog(null, message, "Error contraseña", JOptionPane.ERROR_MESSAGE);					}
 				}else {
+					DatabaseController.getInstance().insertPlayer(new Player(txtName.getText(), new String(pfPassword.getPassword()), jbCountries.getSelectedItem().toString()));
 					startGame();
 				}
 			} catch (DBException e1) {

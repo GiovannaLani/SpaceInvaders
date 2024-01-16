@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class DatabaseControllerTest {
 	String usuario = "a";
 	
 	@Before
-	public void setUp() throws SQLException {
+	public void setUp() throws SQLException, DBException {
 
 		conn = DriverManager.getConnection("jdbc:sqlite:" + SettingsController.DATABASE_NAME);
 		dbController = DatabaseController.getInstance();
@@ -53,29 +52,21 @@ public class DatabaseControllerTest {
 			DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			assertTrue(rs.next());
 			assertEquals("testName", rs.getString("username"));
-			assertEquals("testPassword", rs.getString("password"));
-			assertEquals("Alemania", rs.getString("country"));
-			assertEquals("testName", rs.getString("username"));
 			assertEquals(LocalDate.now().format(date), rs.getString("date"));
-			chronometer.setMilliSeconds((long) rs.getDouble("game_duration"));
 			assertEquals(chronometer.getMilliSeconds(), rs.getDouble("game_duration"),0.01 );
 			assertEquals(1000, rs.getInt("game_score"));
 			assertEquals(1, rs.getInt("game_level"));
 		}
 	}
+	
 	@Test
 	public void testCheckByUsernameAndPassword() throws DBException, SQLException {
 		//usuario de prueba
-		String sql = "INSERT INTO game(username, password, country, date, game_duration, game_score, game_level) VALUES (?, ?, ?, ?, ?, ?, ?)"; 
+		String sql = "INSERT INTO player VALUES (?, ?, ?)"; 
 		try(PreparedStatement prepstmt = conn.prepareStatement(sql)){
-			DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			prepstmt.setString(1, "testName");
 			prepstmt.setString(2, "testPassword");
 			prepstmt.setString(3, "Alemania");
-			prepstmt.setString(4, LocalDateTime.now().format(date));
-			prepstmt.setDouble(5, 10000000.01);
-			prepstmt.setInt(6, 1000);
-			prepstmt.setInt(7, 1);	
 			
 			prepstmt.executeUpdate();
 		}
@@ -85,17 +76,12 @@ public class DatabaseControllerTest {
 
 	@Test
 	public void testUserExists() throws SQLException, DBException {
-		String sql = "INSERT INTO game(username, password, country, date, game_duration, game_score, game_level) VALUES (?, ?, ?, ?, ?, ?, ?)"; 
+		String sql = "INSERT INTO player VALUES (?, ?, ?)"; 
 		try(PreparedStatement prepstmt = conn.prepareStatement(sql)){
-			DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			prepstmt.setString(1, "testName");
 			prepstmt.setString(2, "testPassword");
 			prepstmt.setString(3, "Alemania");
-			prepstmt.setString(4, LocalDateTime.now().format(date));
-			prepstmt.setDouble(5, 10000000.01);
-			prepstmt.setInt(6, 1000);
-			prepstmt.setInt(7, 1);
-
+			
 			prepstmt.executeUpdate();
 		}
 		assertTrue(dbController.userExists("testName"));
@@ -104,17 +90,15 @@ public class DatabaseControllerTest {
 	
 
 	public void top10Data(int count) throws SQLException, DBException {
-		String sql = "INSERT INTO game(username, password, country, date, game_duration, game_score, game_level) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO game(username, date, game_duration, game_score, game_level) VALUES (?, ?, ?, ?, ?)";
 		try(PreparedStatement prepstmt = conn.prepareStatement(sql)){
 			DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			for(int i = 0;i < count;i++) {
 				prepstmt.setString(1, "user" + i);
-                prepstmt.setString(2, "pass" + i);
-                prepstmt.setString(3, "country" + i);
-                prepstmt.setString(4, LocalDate.now().format(date));
-                prepstmt.setDouble(5, i * 1000);
-                prepstmt.setInt(6, i * 100);
-                prepstmt.setInt(7, i);
+                prepstmt.setString(2, LocalDate.now().format(date));
+                prepstmt.setDouble(3, i * 1000);
+                prepstmt.setInt(4, i * 100);
+                prepstmt.setInt(5, i);
                 prepstmt.executeUpdate();
 			}
 		}
@@ -127,18 +111,17 @@ public class DatabaseControllerTest {
 		assertEquals(10, top10.size());
 	}
 	
-	public void top10CountryData(int count, String country) throws SQLException {
-		String sql = "INSERT INTO game(username, password, country, date, game_duration, game_score, game_level) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	public void top10CountryData(int count, String country) throws SQLException, DBException {
+		DatabaseController.getInstance().insertPlayer(new Player("testUser", "pass", "Alemania"));
+		String sql = "INSERT INTO game(username, date, game_duration, game_score, game_level) VALUES (?, ?, ?, ?, ?)";
 		try(PreparedStatement prepstmt = conn.prepareStatement(sql)){
 			DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			for(int i = 0;i < count;i++) {
-				prepstmt.setString(1, "user" + i);
-                prepstmt.setString(2, "pass" + i);
-                prepstmt.setString(3, country);
-                prepstmt.setString(4, LocalDate.now().format(date));
-                prepstmt.setDouble(5, i * 1000);
-                prepstmt.setInt(6, i * 100);
-                prepstmt.setInt(7, i);
+				prepstmt.setString(1, "testUser");
+                prepstmt.setString(2, LocalDate.now().format(date));
+                prepstmt.setDouble(3, i * 1000);
+                prepstmt.setInt(4, i * 100);
+                prepstmt.setInt(5, i);
                 prepstmt.executeUpdate();
 			}
 		}
@@ -152,17 +135,15 @@ public class DatabaseControllerTest {
 	}
 	
 	public void loadPLayerData(int count) throws SQLException {
-		String sql = "INSERT INTO game(username, password, country, date, game_duration, game_score, game_level) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO game(username, date, game_duration, game_score, game_level) VALUES (?, ?, ?, ?, ?)";
 		try(PreparedStatement prepstmt = conn.prepareStatement(sql)){
 			DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			for(int i = 0;i < count;i++) {
 				prepstmt.setString(1, "user" + i);
-                prepstmt.setString(2, "pass" + i);
-                prepstmt.setString(3, "Alemania");
-                prepstmt.setString(4, LocalDate.now().format(date));
-                prepstmt.setDouble(5, i * 1000);
-                prepstmt.setInt(6, i * 100);
-                prepstmt.setInt(7, i);
+                prepstmt.setString(2, LocalDate.now().format(date));
+                prepstmt.setDouble(3, i * 1000);
+                prepstmt.setInt(4, i * 100);
+                prepstmt.setInt(5, i);
                 prepstmt.executeUpdate();
 			}
 		}
@@ -180,17 +161,15 @@ public class DatabaseControllerTest {
 	}
 	
 	public void selectPlayerTopData(int count, String username) throws SQLException {
-		String sql = "INSERT INTO game(username, password, country, date, game_duration, game_score, game_level) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO game(username, date, game_duration, game_score, game_level) VALUES (?, ?, ?, ?, ?)";
 		try(PreparedStatement prepstmt = conn.prepareStatement(sql)){
 			DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			for(int i = 0;i < count;i++) {
 				prepstmt.setString(1, username);
-                prepstmt.setString(2, "pass" + i);
-                prepstmt.setString(3, "country" + i);
-                prepstmt.setString(4, LocalDate.now().format(date));
-                prepstmt.setDouble(5, i * 1000);
-                prepstmt.setInt(6, i * 100);
-                prepstmt.setInt(7, i);
+                prepstmt.setString(2, LocalDate.now().format(date));
+                prepstmt.setDouble(3, i * 1000);
+                prepstmt.setInt(4, i * 100);
+                prepstmt.setInt(5, i);
                 prepstmt.executeUpdate();
 			}
 		}
@@ -201,16 +180,21 @@ public class DatabaseControllerTest {
 	public void testSelectPlayerTop() throws SQLException, DBException {
 		selectPlayerTopData(11, usuario);
 		List<Game> playerTop = dbController.selectPlayerTop(usuario);
-		
-		System.out.println(playerTop);
-		assertEquals(11, playerTop.size());
+		int maxScore = playerTop.get(0).getScore();
+		for(Game game: playerTop) {
+			if(maxScore<game.getScore()) {
+				fail();
+			}
+		}
 
 	}
 
 	@After
     public void tearDown() throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement("DROP TABLE game;")) {
-            stmt.execute();
+        try (PreparedStatement stmt = conn.prepareStatement("DROP TABLE game");
+        		PreparedStatement stmt2 = conn.prepareStatement("DROP TABLE player;")) {
+            stmt.executeUpdate();
+            stmt2.executeUpdate();
         } finally {
             if (conn != null && !conn.isClosed()) {
                 conn.close();
